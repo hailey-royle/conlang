@@ -43,5 +43,26 @@ words are either CV or CVC
 *11/5 this structure means that the maximum number of words is 780*  
 *i do not think this will be enough, but do not know how i will fix this*  
 
+### clauses
+
+all words in a clause are either a head or dependant  
+
+a **head** is a fundemental thing the clause is talking about  
+    heads are unmarked
+
+a **dependant** is a modifier of the head it is attached to  
+    dependants follow the head they are attached to  
+    dependants are marked with a "s" before the word  
+    dependants of dependant are marked with additional "s"es for each degree of seperation from the head  
+
+the **cause** is the head that acts on the following heads  
+    the cause is a kind of head  
+    the cause id always the first word in the clause  
+
+a **effect** is acted on by the preceding heads, and acts on the following heads  
+    effects are a kind of head  
+
+there must be some causal relationship between the heads in a clause, else you move to a new clause  
+
 ## borrowing
 
