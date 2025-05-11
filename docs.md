@@ -38,5 +38,10 @@ english letters not used : cfhjqvxz
 
 ## grammer
 
+words are either CV or CVC  
+
+*11/5 this structure means that the maximum number of words is 780*  
+*i do not think this will be enough, but do not know how i will fix this*  
+
 ## borrowing
 
