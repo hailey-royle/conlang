@@ -34,7 +34,7 @@ vowels
 - u : back close
 - o : back mid
 
-english letters not used : cfhjqvxz
+english letters not used : cfhjqvxz  
 
 ## grammer
 
@@ -46,9 +46,10 @@ words are either CV or CVC
 ### clauses
 
 all words in a clause are either a head or dependant  
+heads are either causes or effects  
 
 a **head** is a fundemental thing the clause is talking about  
-    heads are unmarked
+    heads are unmarked  
 
 a **dependant** is a modifier of the head it is attached to  
     dependants follow the head they are attached to  
@@ -56,11 +57,9 @@ a **dependant** is a modifier of the head it is attached to
     dependants of dependant are marked with additional "s"es for each degree of seperation from the head  
 
 the **cause** is the head that acts on the following heads  
-    the cause is a kind of head  
-    the cause id always the first word in the clause  
+    the cause is always the first word in the clause  
 
 a **effect** is acted on by the preceding heads, and acts on the following heads  
-    effects are a kind of head  
 
 there must be some causal relationship between the heads in a clause, else you move to a new clause  
 
