@@ -1,32 +1,31 @@
 print("dictionary file manipulator")
 
-Def_array = { "baa", "ccc" }
+--the dictionary
+--TODO make the dictionary read from a file
+--the last value needs to be a z because the deffinition adder has a stroke if it needs to add at the end of the array, so the z means it always has something after
+--TODO get rid of the fucking z its so ugly
+Def_table = { "aaa", "bbb", "z" }
 
-Def_input = "abb"
+--definition to be added to the dictionary
+--TODO make this be a actual user input
+Def_input = "ccc"
 
-print(string.sub(Def_input, 1, 1))
-print(string.sub(Def_array[1], 1, 1))
-
-Def_array_length = 0
-for key, value in pairs(Def_array) do
-	Def_array_length = Def_array_length + 1
-end
-print(Def_array_length)
-
+--add the new definition to the place before the first "bigger" definition
+local inc_down = 1
+local inc_in = 1
 repeat
-	if string.sub(Def_input, 1, 1) > string.sub(Def_array[1], 1, 1) then
-		print(">")
-	elseif string.sub(Def_input, 1, 1) == string.sub(Def_array[1], 1, 1) then
-		print("=")
-	--incrementer = incrementer + 1
+	if string.sub(Def_input, inc_in, inc_in) > string.sub(Def_table[inc_down], inc_in, inc_in) then
+		inc_down = inc_down + 1
+		inc_in = 1
+	elseif string.sub(Def_input, inc_in, inc_in) == string.sub(Def_table[inc_down], inc_in, inc_in) then
+		inc_in = inc_in + 1
 	else
-		print("<")
-		table.insert(Def_array, 1, Def_input)
-		Def_array_length = Def_array_length + 1
+		table.insert(Def_table, inc_down, Def_input)
 		break
 	end
 until nil ~= nil
 
-print(Def_array[1])
-print(Def_array[2])
-print(Def_array[3])
+--temporary output
+print(Def_table[1])
+print(Def_table[2])
+print(Def_table[3])
