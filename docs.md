@@ -1,8 +1,6 @@
 
 # conlang docs
 
-***
-
 ## goals
 
 this language is ment for personal use, primarily for thinking, secondly for writing and speaking  
