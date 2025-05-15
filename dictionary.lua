@@ -10,8 +10,10 @@ Def_table = { "aaa", "bbb", "z" }
 --TODO make this be a actual user input
 Def_input = "ccc"
 
---add the new definition to the place before the first "bigger" definition
+--add the new definition to the place before the first "bigger" definition(alphabetical order)
+--inc_down is incrementing what definiton is checked
 local inc_down = 1
+--inc_in is incremeting what letter is checked
 local inc_in = 1
 repeat
 	if string.sub(Def_input, inc_in, inc_in) > string.sub(Def_table[inc_down], inc_in, inc_in) then
