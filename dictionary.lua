@@ -16,9 +16,9 @@ else
 	print("file not found")
 end
 
---definition to be added to the dictionary
---TODO make this be a actual user input
-local def_input = "ccc"
+--user definition to be added to the dictionary
+io.write("definition to put in dictionary")
+local def_input = io.read()
 
 --add the new definition to the place before the first "bigger" definition(alphabetical order)
 --inc_down is incrementing what definiton is checked
