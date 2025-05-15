@@ -2,18 +2,8 @@ print("dictionary file manipulator")
 
 --get dictionary from dictionary.txt and put it into def_table
 local def_table = {}
-local def_raw = io.open("dictionary.txt", "r")
-if def_raw ~= nil then
-	local incremter = 1
-	local write_def = def_raw:read("*l")
-	while write_def ~= nil do
-		def_table[incremter] = write_def
-		incremter = incremter + 1
-		write_def = def_raw:read("*l")
-	end
-	def_raw:close()
-else
-	print("file not found")
+for line in io.lines("dictionary.txt") do
+	table.insert(def_table, line)
 end
 
 --user definition to be added to the dictionary
