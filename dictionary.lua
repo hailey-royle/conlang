@@ -27,7 +27,10 @@ repeat
 	end
 until nil ~= nil
 
---temporary output
+--add def_table to temp file, clones temp file to file, deletes temp file
+io.output("temp_dictionary.txt")
 for i = 1, #def_table do
-	print(def_table[i])
+	io.write(def_table[i], "\n")
 end
+os.rename("temp_dictionary.txt", "dictionary.txt")
+os.remove("temp_dictionary.txt")
