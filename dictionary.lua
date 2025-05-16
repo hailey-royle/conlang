@@ -2,20 +2,19 @@ print("conlang dictionary file manipulator")
 
 local def_search = nil
 local def_add = nil
+local instructions = nil
 
 --get the user's instructions
-io.write("search(s), add definition(a), quit(q): ")
-local instructions = io.read()
+io.write("search dictionary(s), add definition(a): ")
+instructions = io.read()
 if instructions == "s" then
 	io.write('search for word("~word " for conlang "-word " for english): ')
 	def_search = io.read()
 elseif instructions == "a" then
-	io.write('definition to put in dictionary("~conlang : definition : -english): ')
+	io.write("definition to put in dictionary(~conlang : definition : -english): ")
 	def_add = io.read()
-elseif instructions == "q" then
-	print("quit")
 else
-	print("else")
+	print("not a valid input")
 end
 
 --get dictionary from dictionary.txt and put it into def_table
