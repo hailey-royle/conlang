@@ -1,4 +1,16 @@
-print("dictionary file manipulator")
+print("conlang dictionary file manipulator")
+
+io.write("search dictionary(s), add definition(a), quit(q): ")
+local instructions = io.read()
+if instructions == "s" then
+	print("search")
+elseif instructions == "a" then
+	print("add")
+elseif instructions == "q" then
+	print("quit")
+else
+	print("else")
+end
 
 --get dictionary from dictionary.txt and put it into def_table
 local def_table = {}
