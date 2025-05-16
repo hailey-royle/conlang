@@ -23,6 +23,7 @@ local def_table = {}
 for line in io.lines("dictionary.txt") do
 	table.insert(def_table, line)
 end
+
 if instructions == "a" then
 	--add the new definition to the place before the first "bigger" definition(alphabetical order)
 	--inc_down is incrementing what definiton is checked
@@ -40,15 +41,14 @@ if instructions == "a" then
 			break
 		end
 	until nil ~= nil
+	--add def_table to temp file, clones temp file to file, deletes temp file
+	io.output("temp_dictionary.txt")
+	for i = 1, #def_table do
+		io.write(def_table[i], "\n")
+	end
+	os.rename("temp_dictionary.txt", "dictionary.txt")
+	os.remove("temp_dictionary.txt")
 end
-
---add def_table to temp file, clones temp file to file, deletes temp file
-io.output("temp_dictionary.txt")
-for i = 1, #def_table do
-	io.write(def_table[i], "\n")
-end
-os.rename("temp_dictionary.txt", "dictionary.txt")
-os.remove("temp_dictionary.txt")
 
 --prints all lines with def_search
 local def_search = "and"
