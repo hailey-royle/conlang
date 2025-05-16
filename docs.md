@@ -63,3 +63,44 @@ there must be some causal relationship between the heads in a clause, else you m
 
 ## borrowing
 
+some words are created for their contrast with other words, with english not being considered  
+some words are created considering english equivilants, and may be borrowed from an english word  
+
+the prosess by which words get borrowed is as such  
+
+1. assimilation
+    - consonant assimilation does not consider sounds, only letters
+    - start -> end
+    - m -> m
+    - p -> p
+    - b -> b
+    - w -> w
+    - n -> n
+    - t -> t
+    - d -> d
+    - s -> _
+    - r -> r
+    - l -> l
+    - y -> y
+    - k -> k
+    - g -> g
+    - c -> k
+    - f -> w
+    - h -> y
+    - j -> r
+    - q -> k
+    - v -> w
+    - x -> _
+    - z -> _
+    - vowel assimiltion does not consider letters, only sounds
+    - conlang : english 
+    - i : front close
+    - e : front mid
+    - a : front open, central mid, central open, back open
+    - u : central close, back close
+    - o : back mid
+2. the first vowel is the V in a CVC
+3. the consonant before the first vowel is the first C
+    - if there is no consonant before, then check backwards from the end of the word
+4. the consonant after the first vowel is the second C
+
