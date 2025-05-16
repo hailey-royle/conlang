@@ -1,9 +1,12 @@
 print("conlang dictionary file manipulator")
 
-io.write("search dictionary(s), add definition(a), quit(q): ")
+--get the user's instructions
+io.write("conlang search(c), english search(e), add definition(a), quit(q): ")
 local instructions = io.read()
-if instructions == "s" then
-	print("search")
+if instructions == "c" then
+	print("conlang")
+elseif instructions == "e" then
+	print("english")
 elseif instructions == "a" then
 	print("add")
 elseif instructions == "q" then
