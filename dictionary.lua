@@ -34,3 +34,11 @@ for i = 1, #def_table do
 end
 os.rename("temp_dictionary.txt", "dictionary.txt")
 os.remove("temp_dictionary.txt")
+
+--prints all lines with def_search
+local def_search = "and"
+for i = 1, #def_table do
+	if string.find(def_table[i], def_search) then
+		print(def_table[i])
+	end
+end
