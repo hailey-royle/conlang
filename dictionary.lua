@@ -7,7 +7,7 @@ for line in io.lines("dictionary.txt") do
 end
 
 --user definition to be added to the dictionary
-io.write("definition to put in dictionary")
+io.write("definition to put in dictionary: ")
 local def_input = io.read()
 
 --add the new definition to the place before the first "bigger" definition(alphabetical order)
@@ -28,7 +28,6 @@ repeat
 until nil ~= nil
 
 --temporary output
-print(def_table[1])
-print(def_table[2])
-print(def_table[3])
-print(def_table[4])
+for i = 1, #def_table do
+	print(def_table[i])
+end
