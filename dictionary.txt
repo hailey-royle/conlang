@@ -1,3 +1,9 @@
-~aaa : bbb : -ccc
-~ddd : eee : -fff
-~z
+~be : third person definite pronoun : -they -them -their -he -him -his -she -her 
+~bo : third person indefinite pronoun : -they -them -their 
+~me : first person definite pronoun : -i -me -my -we -us -our 
+~mo : first person indefinite pronoun : -my -we -us -our 
+~pe : second person definite pronoun : -you -your -yall 
+~po : second person indefinite pronoun : -you -your -yall 
+~we : definite : -the -that -this -it -its 
+~wo : indefinite : -a -an -it -its 
+~z 
