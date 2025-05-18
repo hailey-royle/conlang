@@ -1,1 +1,7 @@
+~ma : first person pronoun : -i -me -my 
+~mao : first plus second person pronoun : -we -us -our 
+~mau : first plus third person pronoun : -we -us -our 
+~mo : second person pronoun : -you -your 
+~mou : second plus third person pronoun : -you -your -yall 
+~mu : third person pronoun : -they -them -their -he -him -his -she -her 
 ~zzz
