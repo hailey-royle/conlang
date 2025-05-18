@@ -10,36 +10,39 @@ this language should sound good
 
 ## phonology
 
-consonants  
-- m : bilabial nasal
-- p : bilabial plosive voiceless
-- b : bilabial plosive voiced
-- w : bilabial approximant
-- n : alveolar nasal
-- t : alveolar plosive voiceless
-- d : alveolar plosive voiced
-- s : alveolar fricative
-- r : alveolar approximant
-- l : alveolar lat approximant
-- y : palatal approximant
-- k : velar plosive voiceless
-- g : velar plosive voiced
+consonants
+| |labial|alveolar|palatal|glottal|
+|---|---|---|---|---|
+|nasal|m|n| | |
+|---|---|---|---|---|
+|plosive|b|d| |x*|
+|---|---|---|---|---|
+|fricative|v|s*/z|j|h|
+|---|---|---|---|---|
+|approximant| |l/r|y| |
 
-vowels  
-- i : front close
-- e : front mid
-- a : central mid
-- u : back close
-- o : back mid
+vowels
+| |front|central|back|
+|---|---|---|---|
+|close|i| |u|
+|---|---|---|---|
+|open-mid|e| |o|
+|---|---|---|---|
+|open| |a| |
 
-english letters not used : cfhjqvxz  
+dipthongs can be created between any vowels in the table  
+
+used letters: abdehijmnorsuvxyz  
+unused letters: cfgkpqtw  
+\*s and x can not be used in normal words  
+
+## syntax
+
+syllables are either CV, CVV, CCV, or CCVV  
+
+VV is a dipthong  
 
 ## grammer
-
-words are either CV or CVC  
-
-*11/5 this structure means that the maximum number of words is 780*  
-*i do not think this will be enough, but do not know how i will fix this*  
 
 ### clauses
 

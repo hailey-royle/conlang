@@ -9,8 +9,18 @@ io.write("conlang vowel: ")
 V_output = io.read()
 
 --dictionary for consonant assimilation
-C_shifts =
-	{ ["c"] = "k", ["f"] = "w", ["h"] = "y", ["j"] = "r", ["q"] = "k", ["v"] = "w", ["s"] = "", ["x"] = "", ["z"] = "" }
+C_shifts = {
+	["c"] = "y",
+	["f"] = "v",
+	["g"] = "y",
+	["k"] = "y",
+	["p"] = "b",
+	["q"] = "y",
+	["s"] = "z",
+	["t"] = "d",
+	["w"] = "v",
+	["x"] = "z",
+}
 
 --find unassimilated letters and change them to the corrisponding dictionary value
 for key, value in pairs(C_shifts) do
