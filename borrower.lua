@@ -24,12 +24,12 @@ local c_shifts = {
 
 --find unassimilated letters and change them to the corrisponding dictionary value
 for key, value in pairs(c_shifts) do
-	local incremter = 1
-	while string.len(word) >= incremter do
-		if string.sub(word, incremter, incremter) == key then
+	local incrementer = 1
+	while string.len(word) >= incrementer do
+		if string.sub(word, incrementer, incrementer) == key then
 			word = string.gsub(word, key, value)
 		end
-		incremter = incremter + 1
+		incrementer = incrementer + 1
 	end
 end
 
@@ -38,33 +38,46 @@ local v_place = string.find(word, "[ieaou]")
 
 --(C1)find the letter to the left of the first vowel, or the last consonant
 local c1_letter = nil
+local c1_place = nil
 if v_place == 1 then
-	local incremter = string.len(word)
+	local incrementer = string.len(word)
 	while c1_letter == nil do
-		if string.find(string.sub(word, incremter, incremter), "[ieaou]") then
-			incremter = incremter - 1
+		if string.find(string.sub(word, incrementer, incrementer), "[ieaou]") then
+			incrementer = incrementer - 1
 		else
-			c1_letter = string.sub(word, incremter, incremter)
+			c1_letter = string.sub(word, incrementer, incrementer)
+			c1_place = incrementer
+		end
+	end
+else
+	c1_letter = string.sub(word, (v_place - 1), (v_place - 1))
+	c1_place = v_place - 1
+end
+
+--(C2)find the letter to the right of the first vowel
+local c2_letter = nil
+if v_place == 1 then
+	local incrementer = string.len(word) - (string.len(word) - c1_place) - 1
+	while c2_letter == nil or c2_letter == c1_letter do
+		if string.find(string.sub(word, incrementer, incrementer), "[ieaou]") or c2_letter == c1_letter then
+			incrementer = incrementer - 1
+		else
+			c2_letter = string.sub(word, incrementer, incrementer)
+		end
+	end
+elseif c1_place == 1 then
+	local incrementer = string.len(word)
+	while c2_letter == nil or c2_letter == c1_letter do
+		if string.find(string.sub(word, incrementer, incrementer), "[ieaou]") or c2_letter == c1_letter then
+			incrementer = incrementer - 1
+			c2_letter = nil
+		else
+			c2_letter = string.sub(word, incrementer, incrementer)
 		end
 	end
 else
 	c1_letter = string.sub(word, (v_place - 1), (v_place - 1))
 end
 
---(C2)find the letter to the right of the first vowel
-local c2_letter = nil
-if v_place == string.len(word) then
-	print("bitch you fucked up")
-else
-	local incremter = v_place + 1
-	while c2_letter == nil do
-		if string.find(string.sub(word, incremter, incremter), "[ieaou]") then
-			incremter = incremter + 1
-		else
-			c2_letter = string.sub(word, incremter, incremter)
-		end
-	end
-end
-
 --print the final conlang word
-print("conlang word: " .. c1_letter .. v_output .. c2_letter)
+print("conlang word: " .. c2_letter .. c1_letter .. v_output)
