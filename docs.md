@@ -15,9 +15,9 @@ consonants
 |---|---|---|---|---|
 |nasal|m|n| | |
 |---|---|---|---|---|
-|plosive|b|d| |x*|
+|plosive|b|d| |x\*|
 |---|---|---|---|---|
-|fricative|v|s*/z|j|h|
+|fricative|v|s\*/z|j|h|
 |---|---|---|---|---|
 |approximant| |l/r|y| |
 
