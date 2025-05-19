@@ -82,9 +82,9 @@ the prosess by which words get borrowed is as such
     - conlang : english 
     - i : front close
     - e : front mid
-    - a : front open, central mid, central open, back open
+    - a : front open, central open, back open
     - u : central close, back close
-    - o : back mid
+    - o : central mid, back mid
 2. the first vowel is the start of the dipthong V
 3. the second vowel is the end of the dipthong, if there is not one, then 'a' is used
 3. the consonant before the first vowel is the C before the dipthong
