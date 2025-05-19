@@ -54,7 +54,7 @@ else
 	c1_place = v_place - 1
 end
 
---(C2)find the letter to the right of the first vowel
+--(C2)find the letter to the left of c1, or the last consonant
 local c2_letter = nil
 if v_place == 1 then
 	local incrementer = string.len(word) - (string.len(word) - c1_place) - 1
@@ -76,7 +76,7 @@ elseif c1_place == 1 then
 		end
 	end
 else
-	c1_letter = string.sub(word, (v_place - 1), (v_place - 1))
+	c2_letter = string.sub(word, (c1_place - 1), (c1_place - 1))
 end
 
 --print the final conlang word
