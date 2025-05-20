@@ -11,25 +11,18 @@ this language should sound good
 ## phonology
 
 consonants
-
 | |labial|alveolar|palatal|glottal|
-
+|---|---|---|---|---|
 |nasal|m|n| | |
-
 |plosive|b|d| |x\*|
-
 |fricative|v|s\*/z|j|h|
-
 |approximant| |l/r|y| |
 
 vowels
-
 | |front|central|back|
-
+|---|---|---|---|
 |close|i| |u|
-
 |open-mid|e| |o|
-
 |open| |a| |
 
 dipthongs can be created between any vowels in the table  
