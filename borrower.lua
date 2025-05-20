@@ -59,7 +59,10 @@ local c2_letter = nil
 if v_place == 1 then
 	local incrementer = string.len(word) - (string.len(word) - c1_place) - 1
 	while c2_letter == nil or c2_letter == c1_letter do
-		if string.find(string.sub(word, incrementer, incrementer), "[ieaou]") or c2_letter == c1_letter then
+		if
+			string.find(string.sub(word, incrementer, incrementer), "[ieaou]")
+			or string.sub(word, incrementer, incrementer) == c1_letter
+		then
 			incrementer = incrementer - 1
 		else
 			c2_letter = string.sub(word, incrementer, incrementer)
