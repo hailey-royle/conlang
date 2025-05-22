@@ -1,3 +1,6 @@
+~dzui : the sense of sight : -sight -see -look -watch -view -vision -eye 
+~dzuo : the sence of sound : -sound -hear -noise -listen -ear -mouth -speak -talk -say 
+~hdou : the sense of touch : -touch -feel -texture 
 ~ma : first person pronoun : -i -me -my 
 ~mao : first plus second person pronoun : -we -us -our 
 ~mau : first plus third person pronoun : -we -us -our 
@@ -12,4 +15,6 @@
 ~vi : consistant with reality : -yes -true -equal -correct -right -afirmative 
 ~vo : logical operator, at least one of two or more things are true : -or -either 
 ~vu : logical operator, one but not both of two things are true : -xor -or -either 
+~zdae : the sence of taste : -taste -mouth 
+~zmeo : the sence of smell : -smell -nose -odor 
 ~zzz
