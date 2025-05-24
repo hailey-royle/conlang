@@ -2,6 +2,8 @@
 ~dzui : the sense of sight : -sight -see -look -watch -view -vision -eye 
 ~dzuo : the sence of sound : -sound -hear -noise -listen -ear -mouth -speak -talk -say 
 ~hdou : the sense of touch : -touch -feel -texture 
+~lvai : downwards in distance : -down -below -bottom -under 
+~lvia : upwards in distance : -up -above -top -on 
 ~ma : first person pronoun : -i -me -my 
 ~mao : first plus second person pronoun : -we -us -our 
 ~mau : first plus third person pronoun : -we -us -our 
@@ -12,10 +14,17 @@
 ~nvi : not consistant with reality : -no -false -unequal -wrong -incorrect -negitive -not 
 ~nvo : logical operator, all of two or more things are not ture : -nor -neither 
 ~nvu : logical operator, both or neither of two things are true : -nxor 
+~rlae : leftwards in distance : -left -port 
+~rlea : rightwards in distance : -right -starboard 
 ~va : logical operator, all of two or more things are true : -and -both 
 ~vi : consistant with reality : -yes -true -equal -correct -right -afirmative 
 ~vo : logical operator, at least one of two or more things are true : -or -either 
 ~vu : logical operator, one but not both of two things are true : -xor -or -either 
+~ydai : close to in distance : -close -before -front -early -soon 
+~ydia : far away in distance : -far -after -behind -late -back 
+~yzai : the exterior surface of : -surface -exterior -perimeter -on 
+~yzou : not contained within : -outside -out 
+~yzuo : contained within : -inside -within -in -into interior 
 ~zdae : the sence of taste : -taste -mouth 
 ~zmeo : the sence of smell : -smell -nose -odor 
 ~zzz
