@@ -36,7 +36,9 @@ unused letters: cfgkpqtw
 
 syllables are either CV, CVV, CCV, or CCVV  
 
-VV is a dipthong  
+all words are one syllable  
+
+i dont know how stress works, but im pretty sure i can ignore it because all words are one syllable  
 
 ## grammer
 
