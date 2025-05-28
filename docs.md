@@ -32,13 +32,13 @@ used letters: abdehijmnorsuvxyz
 unused letters: cfgkpqtw  
 \*s and x can not be used in normal words  
 
-## syntax
+## morphology
 
-syllables are either CV, CVV, CCV, or CCVV  
+all words are root words  
 
 all words are one syllable  
 
-i dont know how stress works, but im pretty sure i can ignore it because all words are one syllable  
+syllables are either CV, CVV, CCV, or CCVV  
 
 ## grammer
 
