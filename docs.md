@@ -48,27 +48,20 @@ all words are a refrence to an abstract concept, and only a refrence to an abstr
 
 any degree of specificity is relegated to context or other words  
 
-## grammer
+## syntax
 
-### clauses
+there is no gramatical catagory  
+word order and operators give structure to a sentance  
 
-all words in a clause are either a head or dependant  
-heads are either causes or effects  
+the most important word in a sentance is the **head**, it is what the sentance is about  
+the head is always the first word  
+all other words add information about the head  
 
-a **head** is a fundemental thing the clause is talking about  
-    heads are unmarked  
+the rest of the words in a sentance can either be a **specifier** or **corollary**  
 
-a **dependant** is a modifier of the head it is attached to  
-    dependants follow the head they are attached to  
-    dependants are marked with a "s" before the word  
-    dependants of dependant are marked with additional "s"es for each degree of seperation from the head  
+corollarys give information about the effects of the head or other corollarys  
 
-the **cause** is the head that acts on the following heads  
-    the cause is always the first word in the clause  
-
-a **effect** is acted on by the preceding heads, and acts on the following heads  
-
-there must be some causal relationship between the heads in a clause, else you move to a new clause  
+specifiers add more information about the word it is modifying  
 
 ## borrowing
 
