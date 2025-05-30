@@ -1,6 +1,8 @@
 
 # conlang docs
 
+*this documentation is a very crude state and only ment to be usefull to me, others be warned*  
+
 ## goals
 
 i am making this languages as a personal project in an attempt to change the way i think  
