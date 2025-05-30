@@ -40,6 +40,12 @@ all words are one syllable
 
 syllables are either CV, CVV, CCV, or CCVV  
 
+## semantics
+
+all words are a refrence to an abstract concept, and only a refrence to an abstract concept  
+
+any degree of specificity is relegated to context or other words  
+
 ## grammer
 
 ### clauses
