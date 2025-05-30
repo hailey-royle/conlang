@@ -63,6 +63,17 @@ corollarys give information about the effects of the head or other corollarys
 
 specifiers add more information about the word it is modifying  
 
+### controll flow
+
+if a word in a sentance is unmarked, it is a specifier of the word emeditly before it  
+other functionality has to be implemted with operators  
+
+#### operators
+
+sa : next word is a corollary  
+si : all following words modify the word before the *si* until *su* (open parentheses)  
+su : closes si (closed parentheses)  
+
 ## borrowing
 
 some words are created for their contrast with other words, with english not being considered  
