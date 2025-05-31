@@ -32,6 +32,7 @@ dipthongs can be created between any vowels in the table
 
 used letters: abdehijmnorsuvxyz  
 unused letters: cfgkpqtw  
+
 \*s and x can only be used in marking and can not be used in normal words  
 
 ## morphology
@@ -66,7 +67,9 @@ specifiers add more information about the word it is modifying
 ### marking
 
 for specifiers of the word directly before it, there is no marking 
+
 for specifiers of the word two before, a "s" is added to the begining of the word, adding another s each additional place back  
+
 for corollarys, a "x" is added to the begining, adding another x each additional place back  
 
 ## borrowing
