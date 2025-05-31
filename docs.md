@@ -32,7 +32,7 @@ dipthongs can be created between any vowels in the table
 
 used letters: abdehijmnorsuvxyz  
 unused letters: cfgkpqtw  
-\*s and x can not be used in normal words  
+\*s and x can only be used in marking and can not be used in normal words  
 
 ## morphology
 
