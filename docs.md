@@ -1,12 +1,12 @@
 
 # conlang docs
 
-*this documentation is a very crude state and only ment to be usefull to me, others be warned*  
+*this documentation is in a very crude state and only ment to be usefull to me, others be warned*  
 
 ## goals
 
-i am making this languages as a personal project in an attempt to change the way i think  
-this language should force the user to be explicitly aware of the connections between the words said, piritcularly cause and effect  
+i am making this language as a personal project in an attempt to change the way i think  
+the language should force the user to be explicitly aware of the connections between the words said, pirticularly cause and effect  
 i intend this language for personal use, primarily with thinking, secondly with writing and speaking  
 the language should be as simple as is reasonable  
 the language should sound good  
@@ -65,7 +65,7 @@ specifiers add more information about the word it is modifying
 
 ### controll flow
 
-if a word in a sentance is unmarked, it is a specifier of the word emeditly before it  
+if a word in a sentance is unmarked, it is a specifier of the word imeditly before it  
 other functionality has to be implemted with operators  
 
 #### operators
