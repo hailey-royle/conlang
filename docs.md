@@ -17,8 +17,8 @@ consonants
 | |labial|alveolar|palatal|glottal|
 |---|---|---|---|---|
 |nasal|m|n| | |
-|plosive|b|d| |x\*|
-|fricative|v|s\*/z|j|h|
+|plosive|b|d| | |
+|fricative|v|s\*/z|x\*j|h|
 |approximant| |l/r|y| |
 
 vowels
@@ -63,16 +63,11 @@ corollarys give information about the effects of the head or other corollarys
 
 specifiers add more information about the word it is modifying  
 
-### controll flow
+### marking
 
-if a word in a sentance is unmarked, it is a specifier of the word imeditly before it  
-other functionality has to be implemted with operators  
-
-#### operators
-
-sa : next word is a corollary  
-si : all following words modify the word before the *si* until *su* (open parentheses)  
-su : closes si (closed parentheses)  
+for specifiers of the word directly before it, there is no marking 
+for specifiers of the word two before, a "s" is added to the begining of the word, adding another s each additional place back  
+for corollarys, a "x" is added to the begining, adding another x each additional place back  
 
 ## borrowing
 
