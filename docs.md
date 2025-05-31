@@ -18,8 +18,8 @@ consonants
 |---|---|---|---|---|
 |nasal|m|n| | |
 |plosive|b|d| | |
-|fricative|v|s\*/z|x\*j|h|
-|approximant| |l/r|y| |
+|fricative|v|s\* / z|x\* / j|h|
+|approximant| |l / r|y| |
 
 vowels
 | |front|central|back|
