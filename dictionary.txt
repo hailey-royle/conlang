@@ -5,6 +5,7 @@
 ~dyua : good qualtiy : -quality -good 
 ~dzui : the sense of sight : -sight -see -look -watch -view -vision -eye 
 ~dzuo : the sence of sound : -sound -hear -noise -listen -ear -mouth -speak -talk -say 
+~hdea : deprived of animacy : -death -dead -die -kill -lifeless 
 ~hdou : the sense of touch : -touch -feel -texture 
 ~hveo : many of a set of things : -many -most -some -part -section -several 
 ~hviu : few of a set of things : -few -some -part -section -several -couple 
@@ -28,6 +29,8 @@
 ~rnue : concept of quantity : -quantity -number -count 
 ~va : logical operator, all of two or more things are true : -and -both 
 ~vi : consistant with reality : -yes -true -equal -correct -right -afirmative 
+~vlie : the concept of animacy : -alive -life -creature -birth -animate 
+~vluo : the concept of inanimacy : -inanimate -lifeless 
 ~vo : logical operator, at least one of two or more things are true : -or -either 
 ~vu : logical operator, one but not both of two things are true : -xor -or -either 
 ~ydai : close to in distance : -close -before -front -early -soon 
