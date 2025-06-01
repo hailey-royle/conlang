@@ -1,6 +1,10 @@
+~blae : the color black : -black -dark 
+~blui : the color blue : -blue 
 ~brae : the concept of consiousness : -consiousness -brain -think -memory -understand -intelligent -smart -genius -consider -belief -assume 
 ~dboa : bad opinion : -bad -hate -dislike -opinion -subjective 
 ~dbua : bad qualtiy : -quality -bad 
+~dmae : the color magenta : -magenta -pink -purple 
+~drea : the color red : -red -pink -orange -brown 
 ~dyoa : good opinion : -good -like -opinion -subjective -fine -benefit -plesant -enjoy -nice -great 
 ~dyua : good qualtiy : -quality -good 
 ~dzui : the sense of sight : -sight -see -look -watch -view -vision -eye 
@@ -23,18 +27,23 @@
 ~nvi : not consistant with reality : -no -false -unequal -wrong -incorrect -negitive -not 
 ~nvo : logical operator, all of two or more things are not ture : -nor -neither 
 ~nvu : logical operator, both or neither of two things are true : -nxor 
+~nyai : the color cyan : -blue -cyan 
 ~nyei : all of a set of things : -all -everyone -everything -every -complete -full -total -entire -whole 
 ~rlae : leftwards in distance : -left -port 
 ~rlea : rightwards in distance : -right -starboard 
 ~rnue : concept of quantity : -quantity -number -count 
 ~va : logical operator, all of two or more things are true : -and -both 
+~vhei : the color white : -white -light 
 ~vi : consistant with reality : -yes -true -equal -correct -right -afirmative 
 ~vlie : the concept of animacy : -alive -life -creature -birth -animate 
 ~vluo : the concept of inanimacy : -inanimate -lifeless 
 ~vo : logical operator, at least one of two or more things are true : -or -either 
 ~vu : logical operator, one but not both of two things are true : -xor -or -either 
+~vyea : the color yellow : -yellow -orange 
 ~ydai : close to in distance : -close -before -front -early -soon 
 ~ydia : far away in distance : -far -after -behind -late -back 
+~yrai : the color gray : -gray -brown 
+~yria : the color green : -green 
 ~yzai : the exterior surface of : -surface -exterior -perimeter -on 
 ~yzou : not contained within : -outside -out 
 ~yzuo : contained within : -inside -within -in -into interior 
