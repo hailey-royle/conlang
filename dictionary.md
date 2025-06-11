@@ -40,3 +40,15 @@
 **nyei** : quantity : all of a set : *all* *everyone* *everything* *every* *complete* *full* *total* *entire* *whole*
 **dbeo** : quantity : part of a set : *part* *many* *most* *some* *section* *several* *few* *couple*
 **rzio** : quantity : none of a set : *none* *absent* *nothing* *zero*
+
+### color
+
+**drea** : color : red : *red* *brown* *pink* *orange*
+**yria** : color : green : *green*
+**blui** : color : blue : *blue*
+**vyea** : color : yellow : *yellow* *orange* *brown*
+**nyai** : color : cyan : *cyan* *blue*
+**dmae** : color : magenta : *magenta* *purple* *pink*
+**blae** : color : black : *black* *dark*
+**yrai** : color : gray : *gray* *brown*
+**vhei** : color : white : *white* *light*
