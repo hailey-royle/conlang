@@ -45,6 +45,12 @@
 
 **vi** : logic : consistant with reality : *yes* *true* *equal* *correct* *right* *affirmative* *consistant* *real*
 **nvi** : logic : not consistant with reality : *no* *false* *unequal* *wrong* *incorrect* *negative* *inconsistant* *not*
+**va** : logic : all are consistant with reality : *and* *both* *all*
+**nva** : logic : all are not consistant with reality : *nand* *neither*
+**vo** : logic : at least one of n is consistant with reality : *or* *either*
+**nvo** : logic : at least one of n is not consistant with reality : *nor* *neither*
+**vu** : logic : at least one but not both of n is consistant with reality : *xor* *or* *either*
+**nvu** : logic : at least on but not both od n is not consistant with reality : *nxor*
 
 ### color
 
