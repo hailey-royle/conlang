@@ -43,6 +43,9 @@
 
 ### quality
 
+**dyua** : quality : good quality : *quality* *good* *objective* *fine* *great*
+**dbua** : quality : bad quality : *quality* *bad* *objective*
+
 ### logic
 
 **vi** : logic : consistant with reality : *yes* *true* *equal* *correct* *right* *affirmative* *consistant* *real*
