@@ -1,4 +1,6 @@
+--########
 --this was made obsolite after i remembered grep exists
+--########
 print("conlang dictionary file manipulator")
 
 local def_search = nil
