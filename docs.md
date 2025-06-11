@@ -52,7 +52,7 @@ any degree of specificity is relegated to context or other words
 ## syntax
 
 there is no gramatical catagory  
-word order and operators give structure to a sentance  
+word order and marking give structure to a sentance  
 
 the most important word in a sentance is the **head**, it is what the sentance is about  
 the head is always the first word  
