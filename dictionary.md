@@ -36,8 +36,6 @@
 
 ### quantity
 
-all, some, few, many, none, number/quantity
-
 **rnue** : quantity : concept of quantity : *quantity* *number* *count* *amount*
 **nyei** : quantity : all of a set : *all* *everyone* *everything* *every* *complete* *full* *total* *entire* *whole*
 **dbeo** : part of a set : *part* *many* *most* *some* *section* *several* *few* *couple*
