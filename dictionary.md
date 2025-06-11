@@ -41,6 +41,11 @@
 **dbeo** : quantity : part of a set : *part* *many* *most* *some* *section* *several* *few* *couple*
 **rzio** : quantity : none of a set : *none* *absent* *nothing* *zero*
 
+### logic
+
+**vi** : logic : consistant with reality : *yes* *true* *equal* *correct* *right* *affirmative* *consistant* *real*
+**nvi** : logic : not consistant with reality : *no* *false* *unequal* *wrong* *incorrect* *negative* *inconsistant* *not*
+
 ### color
 
 **drea** : color : red : *red* *brown* *pink* *orange*
