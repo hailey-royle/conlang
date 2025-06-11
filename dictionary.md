@@ -69,5 +69,7 @@
 ### life
 
 **brae** : life : the concept of consiousness : *consiousness* *brain* *think* *memory* *understand* *intelligent* *smart* *genius* *consider* *belief* *assume*
+**dyoa** : life : good opinion : *good* *like* *opinion* *subjective* *fine* *benefit* *plesant* *enjoy* *nice* *great*
+**dboa** : life : bad opinion : *bad* *hate* *dislike* *opinion* *subjective*
 **myai** : life : the concept of animacy : *alive* *life* *creature* *birth* *animate* *living*
 **myia** : life : the concept of inanimacy : *inanimate* *lifeless* *nonliving* *dead* *death* *kill* *die*
