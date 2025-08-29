@@ -14,63 +14,69 @@ the language should sound good
 ## phonology
 
 consonants
-| |labial|alveolar|palatal|glottal|
-|---|---|---|---|---|
-|nasal|m|n| | |
-|plosive|b|d| | |
-|fricative|v|s\* / z|x\* / j|h|
-|approximant| |l / r|y| |
+| |labial|dental|alveolar|post-alveolar|glottal|
+|---|---|---|---|---|---|
+|nasal          | m |   | n |   |   |
+|sil fricative  |   |   |s/z|x/j|   |
+|fricative      |f/v|t/d|   |   | h |
+|approximant    |   |   |   | r |   |
+|lat approximant|   |   | l |   |   |
 
 vowels
-| |front|central|back|
+| |front unrounded|central|back rounded|
 |---|---|---|---|
-|close|i| |u|
-|open-mid|e| |o|
-|open| |a| |
+|close   |i| |u|
+|mid     |e|w|o|
+|open-mid|a| |c|
 
-dipthongs can be created between any vowels in the table  
-
-used letters: abdehijmnorsuvxyz  
-unused letters: cfgkpqtw  
-
-\*s and x can only be used in marking and can not be used in normal words  
+used letters: acdefhijlmnorstuvwxz
+unused letters: bgkpqy
 
 ## morphology
 
 all words are root words  
 
-all words are one syllable  
-
-syllables are either CV, CVV, CCV, or CCVV  
+all words are one syllable and a trailing vowel ( CVC V )  
 
 ## semantics
 
-all words are a refrence to an abstract concept, and only a refrence to an abstract concept  
-
-any degree of specificity is relegated to context or other words  
+all words are a refrence to an abstract concept  
+all further specficity is expresed through context or other words  
 
 ## syntax
 
 there is no gramatical catagory  
-word order and marking give structure to a sentance  
+word order and trailing vowel inflection give structrue to words  
 
-the most important word in a sentance is the **head**, it is what the sentance is about  
-the head is always the first word  
-all other words add information about the head  
+a sentance is constructed by adding information to the **origin**  
+following words can either be a **corrilary** or a **specifier**  
 
-the rest of the words in a sentance can either be a **specifier** or **corollary**  
+**origin** - the first head in a sentance, always the first word  
 
-corollarys give information about the effects of the head or other corollarys  
+**corrilary** - all heads following the first head  
 
-specifiers add more information about the word it is modifying  
+**head** - the first word in a clause, does not add any spcification to any other word
 
-### marking
+**depandant head** - a head which is an effect of the first caluses, head.
 
-for specifiers of the word directly before it, there is no marking 
+**specifier** - a word which provides more information about a head
 
-for specifiers of the word two before, a "s" is added to the begining of the word, adding another s each additional place back  
+**clause** - a head, optional followed by a number of specifiers
 
-for corollarys, a "x" is added to the begining, adding another x each additional place back  
+**sentance** - a clause, optionaly followed by a number of depantant heads
+
+in a clause, you can also go back and add more context about a previously mentioned word
+by marking the end of the specifier string then repeating the word you want to add context to
+
+### marking  
+
+the marking of the vowel signifies the end of something
+word marking is found in the trailing vowel, which can either be;
+
+unmarked - normal vowel
+the end of the specifier string - clipped - abrupt end
+the end of the clause - lengtheded - vowel pronounced for longer
+the end of the sentance - dipthonged shwa - added shwa at the end
 
 ## borrowing
 
