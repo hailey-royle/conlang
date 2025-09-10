@@ -16,27 +16,40 @@ the language should sound good
 consonants
 | |labial|dental|alveolar|post-alveolar|glottal|
 |---|---|---|---|---|---|
-|nasal          | m |   | n |   |   |
+|nasal          | m | n |   |   |   |
 |sil fricative  |   |   |s/z|x/j|   |
 |fricative      |f/v|t/d|   |   | h |
 |approximant    |   |   |   | r |   |
 |lat approximant|   |   | l |   |   |
 
-vowels
-| |front unrounded|central|back rounded|
-|---|---|---|---|
-|close   |i| |u|
-|mid     |e|w|o|
-|open-mid|a| |c|
+consonants simplified
+| |labial|dental|alveolar|post-alveolar|glottal|
+|---|---|---|---|---|---|
+|nasal          | m | n |   |   |   |
+|fricative      |f/v|t/d|s/z|x/j| h |
+|approximant    |   |   | l | r |   |
 
-used letters: acdefhijlmnorstuvwxz
-unused letters: bgkpqy
+13
+
+vowels
+| |front|central|back|
+|---|---|---|---|
+|close   |i/I|   |u/U|
+|mid     |e/E| w |o/O|
+|open-mid|a/A|   |c/C|
+
+13
+
+iIeEaAuUoOcCwfvtdszxjmnlrh
+
+### binary
 
 ## morphology
 
 all words are root words  
 
 all words are one syllable and a trailing vowel ( CVC V )  
+the traling vowel is marking gramatical catagory - see syntax
 
 ## semantics
 
@@ -45,40 +58,36 @@ all further specficity is expresed through context or other words
 
 ## syntax
 
-there is no gramatical catagory  
-word order and trailing vowel inflection give structrue to words  
+word order and the trailing vowel give structrue to words  
 
-a sentance is constructed by adding information to the **origin**  
-following words can either be a **corrilary** or a **specifier**  
+all word are either a head or a specifier
+- heads are the begining of a clause, they do not provide more information about another word
+- speifiers are following a head, of which they provide more information about
 
-**origin** - the first head in a sentance, always the first word  
-
-**corrilary** - all heads following the first head  
-
-**head** - the first word in a clause, does not add any spcification to any other word
-
-**depandant head** - a head which is an effect of the first caluses, head.
-
-**specifier** - a word which provides more information about a head
-
-**clause** - a head, optional followed by a number of specifiers
-
-**sentance** - a clause, optionaly followed by a number of depantant heads
-
-in a clause, you can also go back and add more context about a previously mentioned word
-by marking the end of the specifier string then repeating the word you want to add context to
+all heads are either a origin or a dependant
+- the origin is the first head, it is the cause of other heads
+- dependants are following the origin, of which they are effected by
 
 ### marking  
 
-the marking of the vowel signifies the end of something
-word marking is found in the trailing vowel, which can either be;
+all words are marked
+there are four kinds of marking
 
-unmarked - normal vowel
-the end of the specifier string - clipped - abrupt end
-the end of the clause - lengtheded - vowel pronounced for longer
-the end of the sentance - dipthonged shwa - added shwa at the end
+end of a list
+- trailing vowel is i
+- next word is a repitition of a word perviously said
+- words following that word are specifiers of the word repeated
+end of a clause
+- trailing vowel is e
+- next word is a depandant head
+end of a sentance
+- trailing vowel is a
+- next word is a origin
+not an end
+- trailing vowel is a w
+- next word is a specifier of this word
 
-## borrowing
+## borrowing (depricated)
 
 some words are created for their contrast with other words, with english not being considered  
 some words are created considering english equivilants, and may be borrowed from an english word  
