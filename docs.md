@@ -60,13 +60,13 @@ all further specficity is expresed through context or other words
 
 word order and the trailing vowel give structrue to words  
 
-all word are either a head or a specifier
+all word are either a start or a continuer
 - heads are the begining of a clause, they do not provide more information about another word
 - speifiers are following a head, of which they provide more information about
 
-all heads are either a origin or a dependant
-- the origin is the first head, it is the cause of other heads
-- dependants are following the origin, of which they are effected by
+all heads are either a cause or a effect
+- the cause is the first start, it is the cause of other starts
+- effects are following the cause, of which they are effected by
 
 ### marking  
 
@@ -76,16 +76,16 @@ there are four kinds of marking
 end of a list
 - trailing vowel is i
 - next word is a repitition of a word perviously said
-- words following that word are specifiers of the word repeated
+- words following that word are continuer of the word repeated
 end of a clause
 - trailing vowel is e
-- next word is a depandant head
+- next word is a effect
 end of a sentance
 - trailing vowel is a
-- next word is a origin
+- next word is a cause
 not an end
 - trailing vowel is a w
-- next word is a specifier of this word
+- next word is a continuer of this word
 
 ## borrowing (depricated)
 
