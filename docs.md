@@ -14,41 +14,25 @@ the language should sound good
 ## phonology
 
 consonants
-| |labial|dental|alveolar|post-alveolar|glottal|
-|---|---|---|---|---|---|
-|nasal          | m | n |   |   |   |
-|sil fricative  |   |   |s/z|x/j|   |
-|fricative      |f/v|t/d|   |   | h |
-|approximant    |   |   |   | r |   |
-|lat approximant|   |   | l |   |   |
-
-consonants simplified
-| |labial|dental|alveolar|post-alveolar|glottal|
-|---|---|---|---|---|---|
-|nasal          | m | n |   |   |   |
-|fricative      |f/v|t/d|s/z|x/j| h |
-|approximant    |   |   | l | r |   |
-
-13
+| |labial|dental|alveolar|post-alveolar|
+|---|---|---|---|---|
+|nasal          | m | n |   |   |
+|sil fricative  |   |   |s/z|x/j|
+|fricative      |f/v|t/d|   |   |
+|approximant    |   |   |   | r |
+|lat approximant|   |   | l |   |
 
 vowels
-| |front|central|back|
-|---|---|---|---|
-|close   |i/I|   |u/U|
-|mid     |e/E| w |o/O|
-|open-mid|a/A|   |c/C|
-
-13
-
-iIeEaAuUoOcCwfvtdszxjmnlrh
-
-### binary
+| |front|central|
+|---|---|---|
+|close   | i |   |
+|mid     | e | w |
+|open-mid| a |   |
 
 ## morphology
 
 all words are root words  
-
-all words are one syllable and a trailing vowel ( CVC V )  
+all words have a trailing vowel
 the traling vowel is marking gramatical catagory - see syntax
 
 ## semantics
