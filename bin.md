@@ -1,12 +1,58 @@
-MOV
-ADD
-NOT
-AND
-OR
-XOR
-JN0
 
-= < >  NOT AND OR  + * / %  ( ) 
+NNNN dsc- DDDD SSSS
+N: numonic
+d: destenation reg/mem
+s: source reg/mem
+c: source c
+D: destenation
+S: source
+-: not used
+
+| N | D | S |
+|---|---|---|
+| MOV | r/m | r/m/c | 
+| ADD | r/m | r/m/c |
+| INC | r/m | - |
+| DEC | r/m | - |
+| NOT | r/m | - |
+| AND | r/m | r/m/c |
+| IOR | r/m | r/m/c |
+| XOR | r/m | r/m/c |
+| BSL | r/m | - |
+| BSR | r/m | - |
+| JIZ | r/m | - |
+| JNZ | r/m | - |
+| JGR | r/m | r/m/c |
+| JGE | r/m | r/m/c |
+| JLS | r/m | r/m/c |
+| JLE | r/m | r/m/c |
+
+ADD +
+MUL *
+FRA /
+MOD %
+
+NOT !
+AND &
+IOR |
+XOR #
+BSL {
+BSR }
+
+ASG :
+OPR (
+CPR )
+
+EQL =
+GRT >
+LST <
+
+INC +{
+DEC +}
+
+NOT-EQL !=
+GRT-EQL >=
+LST-EQL <=
 
 00000000 \0
 00000001 \b
