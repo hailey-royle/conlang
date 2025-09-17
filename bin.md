@@ -1,12 +1,14 @@
-NNNN dsc- DDDD SSSS
 
-N: numonic
-d: destenation reg/mem
-s: source reg/mem
-c: source c
-D: destenation
-S: source
--: not used
+# instructions
+
+NNNNdsc-DDDDSSSS  
+N: numonic  
+d: destenation reg/mem  
+s: source reg/mem  
+c: source c  
+D: destenation  
+S: source  
+-: not used  
 
 | N | D | S |
 |---|---|---|
@@ -27,6 +29,8 @@ S: source
 | JLS | r/m | r/m/c |
 | JLE | r/m | r/m/c |
 
+# keyboard
+
 |   |   |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|---|---|
 |[ r  ]|[ l  ]|[ m  ]|[ n  ]|      |      |[ v  ]|[ d  ]|[ z  ]|[ j  ]| 111xxx
@@ -40,6 +44,8 @@ S: source
 |[0111]|[0110]|[0101]|[0100]|      |      |[0000]|[0001]|[0010]|[0011]| 010xxx
 |[ *  ]|[ {  ]|[ \| ]|[ !  ]|      |      |[ &  ]|[ #  ]|[ }  ]|[ %  ]| 101xxx
 |      |      |[ \e ]|[ \b ]|[ \h ]|[LAY2]|[ _  ]|[ \n ]|      |      |
+
+# ascii
 
 00000000 \0
 00000001 _
