@@ -27,33 +27,6 @@ S: source
 | JLS | r/m | r/m/c |
 | JLE | r/m | r/m/c |
 
-ADD +
-MUL *
-FRA /
-MOD %
-
-NOT !
-AND &
-IOR |
-XOR #
-BSL {
-BSR }
-
-ASG :
-OPR (
-CPR )
-
-EQL =
-GRT >
-LST <
-
-INC +{
-DEC +}
-
-NOT-EQL !=
-GRT-EQL >=
-LST-EQL <=
-
 |   |   |   |   |   |   |   |   |   |   |
 |---|---|---|---|---|---|---|---|---|---|
 |[ r  ]|[ l  ]|[ m  ]|[ n  ]|      |      |[ v  ]|[ d  ]|[ z  ]|[ j  ]| 111xxx
