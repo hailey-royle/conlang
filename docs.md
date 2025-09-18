@@ -42,8 +42,19 @@ all further specficity is expresed through context or other words
 
 ## syntax
 
+xatw fwli fwle tatw ladw fwli fwla  
 ```
-:
+          +---+       +---+
+riz ->    |xat|-------|tat|
+          +---+       +---+
+           / \         / \
+       +---+ +---+ +---+ +---+
+vej +> |fwl| |fwl| |lad| |fwl|
+    |  +---+ +---+ +---+ +---+
+    |                |
+    |              +---+
+    +>             |fwl|
+                   +---+
 ```
 
 word order and the trailing vowel give structrue to words  
