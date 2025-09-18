@@ -44,7 +44,7 @@ all further specficity is expresed through context or other words
 
 word order and the trailing vowel give structrue to words  
 
-all word are either a start or a continuer
+all word are either a start or a descriptor
 - heads are the begining of a clause, they do not provide more information about another word
 - speifiers are following a head, of which they provide more information about
 
@@ -59,8 +59,8 @@ there are four kinds of marking
 
 end of a list
 - trailing vowel is i
-- next word is a repitition of a word perviously said
-- words following that word are continuer of the word repeated
+- if the next word is a descriptor of the same word the marked word is, then the next word is said word
+- if the next word is a descriptor of another word in the sentance, then the next word is a repetition of the descriptee and gets smushed with the trailing vowel
 end of a clause
 - trailing vowel is e
 - next word is a effect
@@ -68,8 +68,8 @@ end of a sentance
 - trailing vowel is a
 - next word is a cause
 not an end
-- trailing vowel is a w
-- next word is a continuer of this word
+- trailing vowel is w
+- next word is a descriptor of this word
 
 ## borrowing (depricated)
 
