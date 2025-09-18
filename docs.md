@@ -42,6 +42,10 @@ all further specficity is expresed through context or other words
 
 ## syntax
 
+```
+:
+```
+
 word order and the trailing vowel give structrue to words  
 
 all word are either a start or a descriptor

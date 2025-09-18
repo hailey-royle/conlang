@@ -1,31 +1,31 @@
 
 # numbers
 
-- 0000 - nif
-- 0001 - nit
-- 0010 - nis
-- 0011 - nix
-- 0100 - niv
-- 0101 - nid
-- 0110 - niz
-- 0111 - nij
-- 1000 - sif
-- 1001 - sit
-- 1010 - sis
-- 1011 - six
-- 1100 - siv
-- 1101 - sid
-- 1110 - siz
-- 1111 - sij
+- nif - 0000 - 0/zero
+- nit - 0001 - 1/one
+- nis - 0010 - 2/two
+- nix - 0011 - 3/three
+- niv - 0100 - 4/four
+- nid - 0101 - 5/five
+- niz - 0110 - 6/six
+- nij - 0111 - 7/seven
+- sif - 1000 - -8/negitive eight
+- sit - 1001 - -7/negitive seven
+- sis - 1010 - -6/negitive six
+- six - 1011 - -5/negitive five
+- siv - 1100 - -4/negitive four
+- sid - 1101 - -3/negitive three
+- siz - 1110 - -2/negitive two
+- sij - 1111 - -1/negitive one
 
 # language grammar
 
-cause
-effect
-origin
-start
-continue
-end
+- xat -- cause
+- tat -- effect
+- riz -- root/start
+- lad -- branch/middle
+- fwl -- leaf/end
+- vej -- more/descriptor
 
 # important
 
