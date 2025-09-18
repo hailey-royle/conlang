@@ -60,7 +60,7 @@ there are four kinds of marking
 end of a list
 - trailing vowel is i
 - if the next word is a descriptor of the same word the marked word is, then the next word is said word
-- if the next word is a descriptor of another word in the sentance, then the next word is a repetition of the descriptee and gets smushed with the trailing vowel
+- if the next word is a descriptor of another word in the clause, then the next word is a repetition of the descriptee and gets smushed with the trailing vowel
 end of a clause
 - trailing vowel is e
 - next word is a effect
