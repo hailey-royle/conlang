@@ -28,7 +28,7 @@
 - evj - more/descriptor
 
 - axt - cause
-- att - effect
+- atd - effect
 - ald - branch/middle
 - fwl - leaf/end
 
@@ -50,8 +50,8 @@
 
 # sences
 
-sight
-sound
-smell
-taste
-touch
+- irs - sight
+- ixs - sound
+- izm - smell
+- efs - taste
+- anz - touch
