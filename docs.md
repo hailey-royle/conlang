@@ -59,13 +59,13 @@ vej +> |fwl| |fwl| |lad| |fwl|
 
 word order and the trailing vowel give structrue to words  
 
-all word are either a start or a descriptor
-- heads are the begining of a clause, they do not provide more information about another word
-- speifiers are following a head, of which they provide more information about
+all word are either *riz* or *vej*
+- *riz* are the begining of a clause, they do not provide more information about another word
+- *vej* are following a *riz*, of which they provide more information about
 
-all heads are either a cause or a effect
-- the cause is the first start, it is the cause of other starts
-- effects are following the cause, of which they are effected by
+all *riz* are either a *xat* or a *tat*
+- the *xat* is the first *riz*, it is the cause
+- *tat* are following the *xat*, of which they are effected by
 
 ### marking  
 
