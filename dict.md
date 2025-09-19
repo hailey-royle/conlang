@@ -20,12 +20,18 @@
 
 # language grammar
 
+- riz -- root/start
+- vej -- more/descriptor
+
 - xat -- cause
 - tat -- effect
-- riz -- root/start
 - lad -- branch/middle
 - fwl -- leaf/end
-- vej -- more/descriptor
+
+- lis -- list/path/array
+- fer -- clause/tree
+- fas -- sentance/data
+- lex -- word
 
 # important
 
