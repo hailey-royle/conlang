@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void VerifyArgs(int argc, char* argv[]) {
+void VerifyArgs(int argc) {
     if (argc == 2) {
         return;
     }
@@ -15,7 +15,12 @@ void VerifyArgs(int argc, char* argv[]) {
     }
 }
 
+void LoadProgram(char* argv) {
+    printf("%s\n", argv);
+}
+
 int main(int argc, char* argv[]) {
-    VerifyArgs(argc, argv);
+    VerifyArgs(argc);
+    LoadProgram(argv[1]);
     return 0;
 }
