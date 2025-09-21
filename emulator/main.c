@@ -16,7 +16,12 @@ void VerifyArgs(int argc) {
 }
 
 void LoadProgram(char* argv) {
-    printf("%s\n", argv);
+    FILE* file;
+    file = fopen(argv, "r");
+    if (file == NULL) {
+        printf("file: %s not found\n", argv);
+        exit(1);
+    }
 }
 
 int main(int argc, char* argv[]) {
