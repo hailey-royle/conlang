@@ -1,10 +1,18 @@
 #include <stdio.h>
 
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        printf("wrong number of args\n");
-        return 1;
+void VerifyArgs(const int argc) {
+    if (argc < 2) {
+        printf("no args given");
+        exit(1);
     }
+    if (argc > 2) {
+        pringf("too many args");
+        exit(1);
+    }
+}
+
+int main(int argc, char* argv[]) {
+    VerifyArgs(argc);
     printf("%d, %s\n", argc, argv[1]);
     return 0;
 }

@@ -1,18 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void VerifyArgs(int argc) {
-    if (argc == 2) {
-        return;
-    }
-    if (argc <= 1) {
-        printf("too few args, include program to run\n");
+#define WORD_LEN 16
+#define RAM_SIZE 65536 //2^16
+
+struct emu {
+    short ram[RAM_SIZE];
+};
+struct emu emu;
+
+void VerifyArgs(const int argc) {
+    if (argc < 2) {
+        printf("no args given\n");
         exit(1);
     }
-    if (argc >= 3) {
-        printf("too many args, only include program to run\n");
+    if (argc > 2) {
+        printf("too many args\n");
         exit(1);
     }
+}
+
+int fsize(FILE *file) {
+    int possition = ftell(file);
+    fseek(file, 0, SEEK_END);
+    int size = ftell(file);
+    fseek(file, possition, SEEK_SET);
+    return size;
 }
 
 void LoadProgram(char* argv) {
@@ -22,6 +35,8 @@ void LoadProgram(char* argv) {
         printf("file: %s not found\n", argv);
         exit(1);
     }
+    fread(emu.ram, sizeof(short), fsize(file), file);
+    printf("%b %b\n", emu.ram[0], emu.ram[1]);
 }
 
 int main(int argc, char* argv[]) {
