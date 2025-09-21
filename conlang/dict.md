@@ -35,7 +35,7 @@
 - ils - list/path/array
 - efr - clause/tree
 - afs - sentance/data
-- elx - word
+- elx - word/item
 
 # important
 
