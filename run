@@ -8,4 +8,6 @@ elif [ "$1" == "emu" ]; then
     gcc emu/emu.c -Wall -Wextra -std=c99 -Og 
     ./a.out $2 
     rm a.out
+else 
+    echo "ded"
 fi

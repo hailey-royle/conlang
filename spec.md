@@ -1,18 +1,18 @@
 
 # instructions
 
-NNNNdsc-DDDDSSSS  
+NNNNdsccDDDDSSSS  
 N: numonic  
-d: destenation reg/mem  
-s: source reg/mem  
-c: source c  
-D: destenation  
-S: source  
--: not used  
+d: destenation reg[0]/mem[1]  
+s: source reg[0]/mem[1]  
+c: destenation mem[0]/c[1]
+c: source mem[0]/c[1]
+D: destenation reg
+S: source reg
 
 | N | D | S |
 |---|---|---|
-| MOV | r/m | r/m/c |
+| MOV | r/m/c | r/m/c |
 | ADD | r/m | r/m/c |
 | INC | r/m | - |
 | DEC | r/m | - |

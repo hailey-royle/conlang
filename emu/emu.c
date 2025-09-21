@@ -30,17 +30,25 @@ int fsize(FILE *file) {
 
 void LoadProgram(char* argv) {
     FILE* file;
-    file = fopen(argv, "r");
+    file = fopen(argv, "rb");
     if (file == NULL) {
         printf("file: %s not found\n", argv);
         exit(1);
     }
-    fread(emu.ram, sizeof(short), fsize(file), file);
-    printf("%b %b\n", emu.ram[0], emu.ram[1]);
+    fread(emu.ram, sizeof(emu.ram[0]), 1, file);
+    fclose(file);
+}
+
+void OutputBinary() {
+    FILE* file;
+    file = fopen("testemu.bin", "wb");
+    fwrite(emu.ram, sizeof(emu.ram[0]), 1, file);
+    fclose(file);
 }
 
 int main(int argc, char* argv[]) {
     VerifyArgs(argc);
     LoadProgram(argv[1]);
+    OutputBinary();
     return 0;
 }
