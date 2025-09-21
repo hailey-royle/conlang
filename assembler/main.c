@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void VerifyArgs(const int argc) {
     if (argc < 2) {
@@ -6,7 +7,7 @@ void VerifyArgs(const int argc) {
         exit(1);
     }
     if (argc > 2) {
-        pringf("too many args");
+        printf("too many args");
         exit(1);
     }
 }
