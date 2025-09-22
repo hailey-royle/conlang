@@ -20,35 +20,26 @@ void VerifyArgs(const int argc) {
     }
 }
 
-int fsize(FILE *file) {
-    int possition = ftell(file);
-    fseek(file, 0, SEEK_END);
-    int size = ftell(file);
-    fseek(file, possition, SEEK_SET);
-    return size;
-}
-
 void LoadProgram(char* argv) {
-    FILE* file;
-    file = fopen(argv, "rb");
+    FILE* file = fopen(argv, "rb");
     if (file == NULL) {
         printf("file: %s not found\n", argv);
         exit(1);
     }
-    fread(emu.ram, sizeof(emu.ram[0]), 1, file);
-    fclose(file);
-}
 
-void OutputBinary() {
-    FILE* file;
-    file = fopen("testemu.bin", "wb");
-    fwrite(emu.ram, sizeof(emu.ram[0]), 1, file);
-    fclose(file);
+    fseek(file, 0, SEEK_END);
+    int size = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
+    fread(emu.ram, size, 1, file);
+
+    //file = fopen("emu.bin", "wb");
+    //fwrite(emu.ram, 1, 12, file);
+    //fclose(file);
 }
 
 int main(int argc, char* argv[]) {
     VerifyArgs(argc);
     LoadProgram(argv[1]);
-    OutputBinary();
     return 0;
 }

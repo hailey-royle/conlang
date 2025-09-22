@@ -1,37 +1,16 @@
 
 # instructions
 
-NNNNdsccDDDDSSSS  
+NNNNdsc-DDDDSSSS  
 N: numonic  
 d: destenation reg[0]/mem[1]  
 s: source reg[0]/mem[1]  
-c: destenation mem[0]/c[1]
 c: source mem[0]/c[1]
 D: destenation reg
 S: source reg
+-: nothing
 
 | N | D | S |
-|---|---|---|
-| MOV | r/m/c | r/m/c |
-| ADD | r/m | r/m/c |
-| INC | r/m | - |
-| DEC | r/m | - |
-| NOT | r/m | - |
-| AND | r/m | r/m/c |
-| IOR | r/m | r/m/c |
-| XOR | r/m | r/m/c |
-| BSL | r/m | - |
-| BSR | r/m | - |
-| JIZ | r/m | - |
-| JNZ | r/m | - |
-| JGR | r/m | r/m/c |
-| JGE | r/m | r/m/c |
-| JLS | r/m | r/m/c |
-| JLE | r/m | r/m/c |
-
-# .asm
-
-|   |   |   |
 |---|---|---|
 | MOV | r/m | r/m/c |
 | ADD | r/m | r/m/c |
@@ -49,6 +28,7 @@ S: source reg
 | JGE | r/m | r/m/c |
 | JLS | r/m | r/m/c |
 | JLE | r/m | r/m/c |
+
 
 # keyboard
 
