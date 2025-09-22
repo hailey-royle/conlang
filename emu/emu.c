@@ -32,10 +32,7 @@ void LoadProgram(char* argv) {
     fseek(file, 0, SEEK_SET);
 
     fread(emu.ram, size, 1, file);
-
-    //file = fopen("emu.bin", "wb");
-    //fwrite(emu.ram, 1, 12, file);
-    //fclose(file);
+    fclose(file);
 }
 
 int main(int argc, char* argv[]) {
