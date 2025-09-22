@@ -26,11 +26,9 @@ void LoadProgram(char* argv) {
         printf("file: %s not found\n", argv);
         exit(1);
     }
-
     fseek(file, 0, SEEK_END);
-    int size = ftell(file);
+    short size = ftell(file);
     fseek(file, 0, SEEK_SET);
-
     fread(emu.ram, size, 1, file);
     fclose(file);
 }
