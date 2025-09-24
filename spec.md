@@ -3,7 +3,7 @@
 
 ## instructions
 
-| numonic | dest | src1 | src2 | machine code |
+| numonic | opp | dst | src1 | src2 | machine code |
 |---|---|---|---|---|
 | LSU | O | - | - | - | 00OOddddaaaabbbb |
 | * | STR | m | r |   | 0000----aaaa---- |
