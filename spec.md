@@ -35,15 +35,15 @@
 *instruction also includes location immeditly after in memory for addressing
 
 O: oppcode  
-d: destination
-a: source1
-b: source2
-Z: zero flag mask
-N: not zero flag mask
-E: equals flag mask
-G: greater then flag mask
-L: less then flag mask
-S: signed flagg mask
+d: destination  
+a: source1  
+b: source2  
+Z: zero flag mask  
+N: not zero flag mask  
+E: equals flag mask  
+G: greater then flag mask  
+L: less then flag mask  
+S: signed flagg mask  
 
 ## regerster layout
 
