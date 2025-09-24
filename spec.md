@@ -34,76 +34,88 @@
 
 *instruction also includes location immeditly after in memory for addressing
 
+O: oppcode  
+d: destination
+a: source1
+b: source2
+Z: zero flag mask
+N: not zero flag mask
+E: equals flag mask
+G: greater then flag mask
+L: less then flag mask
+S: signed flagg mask
+
 ## regerster layout
 
-0x0-0xf: general purpose
-: instruction
-: address
-: temp
+0x0-0xf: general purpose  
+: instruction  
+: address  
+: temp  
 
 ## memory layout
 
-0x0000-0xefff: general purpose
-0xf000-0xffff: screen output
-: keyboard input?
+0x0000-0xefff: general purpose  
+0xf000-0xffff: screen output  
+: keyboard input?  
 
-## cycle
+## cycles
 
-### sub 0
+### 0
 
 - R address
 - R memory
 - W instruction
 
-### sub 1
+### 1
 
-- I address
+- Increment address
 - LSU
     - LOD/STR
-        - R memory
-        - R address
-        - W temp
+        - Read memory
+        - Read address
+        - Write temp
     - MOV
-        - R source1 regester
-        - W destenation regester
+        - Read source1 regester
+        - Write destenation regester
         - SIGNAL DONE
     - IOR
-        - R source1 regester
-        - R source2 regester
-        - W destenation regester
+        - Read source1 regester
+        - Read source2 regester
+        - Write destenation regester
         - SIGNAL DONE
 - ALU
-    - R source1 regester
-    - R source2 regester
-    - E ALU
-    - W destenation regester
+    - Read source1 regester
+    - Read source2 regester
+    - Enable ALU
+    - Write destenation regester
     - SIGNAL DONE
 - CLU
-    - R source1 regester
-    - R source2 regester
-    - E CLU
-    - R memory
-    - R address
-    - W temp
+    - Read source1 regester
+    - Read source2 regester
+    - Enable CLU
+    - Read memory
+    - Read address
+    - Write temp
 
-### sub 2
+### 2
 
-- MOV - NEXT 0
-- ALU - NEXT 0
-- I address
-- R temp
+- Increment address
+- Read temp
 - LSU
     - LOD
-        - R memory
-        - W regester
+        - Read memory
+        - Write regester
         - SIGNAL DONE
     - STR
-        - W memory
-        - R regester
+        - Write memory
+        - Read regester
         - SIGNAL DONE
+    - MOV - NEXT 0
+    - IOR - NEXT 0
+- ALU - NEXT 0
 - CLU
-    - jump
-        - W instruction
+    - if jump enabled
+        - Write instruction
         - SIGNAL DONE
 
 # keyboard
