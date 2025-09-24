@@ -1,34 +1,116 @@
 
-# instructions
+# architechure
 
-NNNNdsc-DDDDSSSS  
-N: numonic  
-d: destenation reg[0]/mem[1]  
-s: source reg[0]/mem[1]  
-c: source mem[0]/c[1]
-D: destenation reg
-S: source reg
--: nothing
+## instructions
 
-| N | D | S |
-|---|---|---|
-| MOV | r/m | r/m/c |
-| ADD | r/m | r/m/c |
-| INC | r/m | - |
-| DEC | r/m | - |
-| NOT | r/m | - |
-| AND | r/m | r/m/c |
-| IOR | r/m | r/m/c |
-| XOR | r/m | r/m/c |
-| BSL | r/m | - |
-| BSR | r/m | - |
-| JIZ | r/m | - |
-| JNZ | r/m | - |
-| JGR | r/m | r/m/c |
-| JGE | r/m | r/m/c |
-| JLS | r/m | r/m/c |
-| JLE | r/m | r/m/c |
+NNNN----DDDDSSSS
 
+N:    numonic
+-:    not used
+D:    destenation regester
+S:    source regester
+
+| numonic | dest | src1 | src2 | machine code |
+|---|---|---|---|---|
+| LSU | O | - | - | - | 00OOddddaaaabbbb |
+| * | STR | m | r |   | 0000----aaaa---- |
+| * | LOD | r | m |   | 0001dddd-------- |
+|   | MOV | r | r |   | 0010ddddaaaa---- |
+|   | IOR | r | r | r | 0011ddddaaaabbbb |
+| ALU | O | - | - | - | 01OOddddaaaabbbb |
+|   | ADD | r | r | r | 0100ddddaaaabbbb |
+|   | AND | r | r | r | 0101ddddaaaabbbb |
+|   | XOR | r | r | r | 0110ddddaaaabbbb |
+|   | NOT | r | r |   | 0111ddddaaaa---- |
+|   | INC | r | r |   | 1000ddddaaaa---- |
+|   | DEC | r | r |   | 1001ddddaaaa---- |
+|   | BSL | r | r |   | 1010ddddaaaa---- |
+|   | BSR | r | r |   | 1011ddddaaaa---- |
+| CLU | O | - | - | - | 11ZNEGLSaaaabbbb |
+| * | NOP |   | r |   | 11000000aaaa---- |
+| * | JMP |   | r |   | 11110000aaaa---- |
+| * | JIZ |   | r |   | 11100000aaaa---- |
+| * | JNZ |   | r |   | 11010000aaaa---- |
+| * | JIS |   | r |   | 11000001aaaa---- |
+| * | JIE |   | r | r | 11001000aaaabbbb |
+| * | JNE |   | r | r | 11000110aaaabbbb |
+| * | JGR |   | r | r | 11000100aaaabbbb |
+| * | JGE |   | r | r | 11001100aaaabbbb |
+| * | JLS |   | r | r | 11000010aaaabbbb |
+| * | JLE |   | r | r | 11001010aaaabbbb |
+
+*instruction also includes location immeditly after in memory for addressing 
+
+## regerster layout
+
+0x0-0xf: general purpose
+: instruction
+: address
+: temp
+
+## memory layout
+
+0x0000-0xefff: general purpose
+0xf000-0xffff: screen output
+
+## cycle
+
+### sub 0
+
+- R address
+- R memory
+- W instruction
+
+### sub 1
+
+- I address
+- LSU
+    - LOD/STR
+        - R memory
+        - R address
+        - W temp
+    - MOV
+        - R source1 regester
+        - W destenation regester
+        - SIGNAL DONE
+    - IOR
+        - R source1 regester
+        - R source2 regester
+        - W destenation regester
+        - SIGNAL DONE
+- ALU
+    - R source1 regester
+    - R source2 regester
+    - E ALU
+    - W destenation regester
+    - SIGNAL DONE
+- CLU
+    - R source1 regester
+    - R source2 regester
+    - E CLU
+    - R memory
+    - R address
+    - W temp
+
+### sub 2
+
+- MOV - NEXT 0
+- ALU - NEXT 0
+- I address
+- R temp
+- LSU
+    - LOD
+        - R memory
+        - W regester
+        - SIGNAL DONE
+    - STR
+        - W memory
+        - R regester
+        - SIGNAL DONE
+- CLU
+    - jump
+        - W instruction
+        - SIGNAL DONE
 
 # keyboard
 
