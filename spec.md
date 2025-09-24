@@ -3,13 +3,6 @@
 
 ## instructions
 
-NNNN----DDDDSSSS
-
-N:    numonic
--:    not used
-D:    destenation regester
-S:    source regester
-
 | numonic | dest | src1 | src2 | machine code |
 |---|---|---|---|---|
 | LSU | O | - | - | - | 00OOddddaaaabbbb |
@@ -39,7 +32,7 @@ S:    source regester
 | * | JLS |   | r | r | 11000010aaaabbbb |
 | * | JLE |   | r | r | 11001010aaaabbbb |
 
-*instruction also includes location immeditly after in memory for addressing 
+*instruction also includes location immeditly after in memory for addressing
 
 ## regerster layout
 
@@ -52,6 +45,7 @@ S:    source regester
 
 0x0000-0xefff: general purpose
 0xf000-0xffff: screen output
+: keyboard input?
 
 ## cycle
 
