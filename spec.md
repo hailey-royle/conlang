@@ -43,7 +43,7 @@ N: not zero flag mask
 E: equals flag mask  
 G: greater then flag mask  
 L: less then flag mask  
-S: signed flagg mask  
+S: signed flag mask  
 
 ## regerster layout
 
