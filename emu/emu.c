@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define STR 0
 #define LOD 1
@@ -24,14 +25,18 @@
 
 #define RAM_SIZE 65536 //2^16
 #define REG_SIZE 16
-#define SCREEN_START RAM_SIZE - 4092 //256*256
+#define SCREEN_START 61444
+
+#define SAVE_CURSOR "\x1b[s"
+#define SAVE_SCREEN "\x1b[?47h"
+#define ERASE_SCREEN "\x1b[2J"
+#define RESTORE_SCREEN "\x1b[?47l"
+#define RESTORE_CURSOR "\x1b[u"
 
 short memory[RAM_SIZE];
 short regester[REG_SIZE];
-short instruction;
-short address;
-short temp;
-short cycle;
+unsigned short instruction;
+unsigned short address;
 
 void VerifyArgs(const int argc) {
     if (argc < 2) {
@@ -53,11 +58,11 @@ void LoadProgram(char* argv) {
     fseek(file, 0, SEEK_END);
     short size = ftell(file);
     fseek(file, 0, SEEK_SET);
-    fread(emu.ram, size, 1, file);
+    fread(memory, size, 1, file);
     fclose(file);
 }
 
-void ExecuteInstruction() {
+bool ExecuteInstruction() {
     instruction = memory[address];
     address++;
 
@@ -68,7 +73,7 @@ void ExecuteInstruction() {
     short source2 = instruction & LSB_FOUR_MASK;
 
     if      (oppcode == STR) { memory[address] = regester[source1]; address++; }
-    else if (oppcode == LOD) { regester[destenation] = memory[address]; address++; }
+    else if (oppcode == LOD) { regester[destination] = memory[address]; address++; }
     else if (oppcode == MOV) { regester[destination] = regester[source1]; }
     else if (oppcode == IOR) { regester[destination] = regester[source1] | regester[source2]; }
     else if (oppcode == ADD) { regester[destination] = regester[source1] + regester[source2]; }
@@ -89,20 +94,39 @@ void ExecuteInstruction() {
 
         if      (zeroCheck && (regester[source1] == 0)) { instruction = memory[address]; address++; }
         else if (notZeroCheck && (regester[source1] != 0)) { instruction = memory[address]; address++; }
-        else if (equalsChcek && (regester[source1] == regester[source2])) { instruction = memory[address]; address++; }
+        else if (equalsCheck && (regester[source1] == regester[source2])) { instruction = memory[address]; address++; }
         else if (greaterCheck && (regester[source1] > regester[source2])) { instruction = memory[address]; address++; }
         else if (lessCheck && (regester[source1] < regester[source2])) { instruction = memory[address]; address++; }
         else if (signedCheck && (regester[source1] < 0)) { instruction = memory[address]; address++; }
     }
+    if (instruction == 0b0000000000000000) {
+        return false;
+    }
+    printf("%x\n", instruction);
+    return true;
+}
+
+void PrintScreen() {
+    memory[RAM_SIZE - 1] = 1131;
+    for (int i = SCREEN_START; i < RAM_SIZE; i++) {
+        printf("%x ", memory[i]);
+    }
+    printf("\n");
 }
 
 void RunEmulator() {
-    while (true) {
-        ExecuteInstruction();
-        if (instruction >= SCREEN_START) {
-            break;
-        }
+    bool run = true;
+    //printf(SAVE_CURSOR);
+    //printf(SAVE_SCREEN);
+    //printf(ERASE_SCREEN);
+    while (run) {
+        run = ExecuteInstruction();
     }
+    PrintScreen();
+    //int hold;
+    //scanf("%d", &hold);
+    //printf(RESTORE_SCREEN);
+    //printf(RESTORE_CURSOR);
 }
 
 int main(int argc, char* argv[]) {
