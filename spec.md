@@ -3,34 +3,34 @@
 
 ## instructions
 
-| numonic | opp | dst | src1 | src2 | machine code |
-|---|---|---|---|---|---|
-| LSU | O | - | - | - | 00OOddddaaaabbbb |
-| * | STR | m | r |   | 0000----aaaa---- |
-| * | LOD | r | m |   | 0001dddd-------- |
-|   | MOV | r | r |   | 0010ddddaaaa---- |
-|   | IOR | r | r | r | 0011ddddaaaabbbb |
-| ALU | O | - | - | - | 01OOddddaaaabbbb |
-|   | ADD | r | r | r | 0100ddddaaaabbbb |
-|   | AND | r | r | r | 0101ddddaaaabbbb |
-|   | XOR | r | r | r | 0110ddddaaaabbbb |
-|   | NOT | r | r |   | 0111ddddaaaa---- |
-|   | INC | r | r |   | 1000ddddaaaa---- |
-|   | DEC | r | r |   | 1001ddddaaaa---- |
-|   | BSL | r | r |   | 1010ddddaaaa---- |
-|   | BSR | r | r |   | 1011ddddaaaa---- |
-| CLU | O | - | - | - | 11ZNEGLSaaaabbbb |
-| * | NOP |   | r |   | 11000000aaaa---- |
-| * | JMP |   | r |   | 11110000aaaa---- |
-| * | JIZ |   | r |   | 11100000aaaa---- |
-| * | JNZ |   | r |   | 11010000aaaa---- |
-| * | JIS |   | r |   | 11000001aaaa---- |
-| * | JIE |   | r | r | 11001000aaaabbbb |
-| * | JNE |   | r | r | 11000110aaaabbbb |
-| * | JGR |   | r | r | 11000100aaaabbbb |
-| * | JGE |   | r | r | 11001100aaaabbbb |
-| * | JLS |   | r | r | 11000010aaaabbbb |
-| * | JLE |   | r | r | 11001010aaaabbbb |
+| numonic | opp | cycles | dst | src1 | src2 | machine code |
+|---|---|---|---|---|---|---|
+| LSU | O | - | - | - | - | 00OOddddaaaabbbb |
+|   | HLT |   |   |   |   | 0000------------ |
+| * | LDM | 3 | r | m |   | 0001dddd-------- |
+| * | STM | 3 | m | r |   | 0010----aaaa---- |
+|   | MOV | 2 | r | r |   | 0011ddddaaaa---- |
+| ALU | O | - | - | - | - | 01OOddddaaaabbbb |
+|   | ADD | 2 | r | r | r | 0100ddddaaaabbbb |
+|   | AND | 2 | r | r | r | 0101ddddaaaabbbb |
+|   | IOR | 2 | r | r | r | 0110ddddaaaabbbb |
+|   | NOT | 2 | r | r |   | 0111ddddaaaa---- |
+|   | INC | 2 | r | r |   | 1000ddddaaaa---- |
+|   | DEC | 2 | r | r |   | 1001ddddaaaa---- |
+|   | BSL | 2 | r | r |   | 1010ddddaaaa---- |
+|   | BSR | 2 | r | r |   | 1011ddddaaaa---- |
+| CLU | O | - | - | - | - | 11ZNEGLSaaaabbbb |
+| * | NOP | 2 |   | r |   | 11000000aaaa---- |
+| * | JMP | 2 |   | r |   | 11110000aaaa---- |
+| * | JIZ | 2 |   | r |   | 11100000aaaa---- |
+| * | JNZ | 2 |   | r |   | 11010000aaaa---- |
+| * | JIS | 2 |   | r |   | 11000001aaaa---- |
+| * | JIE | 2 |   | r | r | 11001000aaaabbbb |
+| * | JNE | 2 |   | r | r | 11000110aaaabbbb |
+| * | JGR | 2 |   | r | r | 11000100aaaabbbb |
+| * | JGE | 2 |   | r | r | 11001100aaaabbbb |
+| * | JLS | 2 |   | r | r | 11000010aaaabbbb |
+| * | JLE | 2 |   | r | r | 11001010aaaabbbb |
 
 *instruction also includes location immeditly after in memory for addressing
 
@@ -47,10 +47,23 @@ S: signed flag mask
 
 ## regerster layout
 
-0x0-0xf: general purpose  
-: instruction  
-: address  
-: temp  
+- genelar puropse (a-p)
+    - Flood memory bus
+    - Take memory bus
+    - Flood individual to ALU/CLU
+    - Take individual from ALU/CLU
+- address
+    - Flood address bus
+    - Take secondary
+    - Increment
+- instruction
+    - Take memory bus
+    - Flood CPU control
+- secondary
+    - Take memory bus
+    - Flood address bus
+- jump - single bit
+    - Write from CLU
 
 ## memory layout
 
@@ -60,63 +73,67 @@ S: signed flag mask
 
 ## cycles
 
-### 0
-
-- R address
-- R memory
-- W instruction
+- Next ()
+    - Increment address
+    - Flood address
+    - Flood memory
+    - Take ()
 
 ### 1
 
-- Increment address
 - LSU
-    - LOD/STR
-        - Read memory
-        - Read address
-        - Write temp
+    - LDM/STM
+        - Next (secondary)
     - MOV
-        - Read source1 regester
-        - Write destenation regester
-        - SIGNAL DONE
-    - IOR
-        - Read source1 regester
-        - Read source2 regester
-        - Write destenation regester
-        - SIGNAL DONE
+        - Flood regester[source1]
+        - Take regester[destenation]
 - ALU
-    - Read source1 regester
-    - Read source2 regester
     - Enable ALU
-    - Write destenation regester
-    - SIGNAL DONE
+    - Flood regester[source1]
+    - Flood regester[source2]
+    - Take regester[destenation]
 - CLU
-    - Read source1 regester
-    - Read source2 regester
+    - Next (secondary)
     - Enable CLU
-    - Read memory
-    - Read address
-    - Write temp
+    - Flood regester[source1]
+    - Flood regester[source2]
+    - Take jump
 
 ### 2
 
-- Increment address
-- Read temp
 - LSU
-    - LOD
-        - Read memory
-        - Write regester
-        - SIGNAL DONE
-    - STR
-        - Write memory
-        - Read regester
-        - SIGNAL DONE
-    - MOV - NEXT 0
-    - IOR - NEXT 0
-- ALU - NEXT 0
+    - LDM
+        - Flood secondary
+        - Flood memory
+        - Take regester
+    - STM
+        - Flood secondary
+        - Take memory
+        - Flood regester
+    - MOV
+        - Next (instruction)
+- ALU
+    - Next (instruction)
 - CLU
-    - if jump enabled
-        - Write instruction
-        - SIGNAL DONE
+    - If jump
+        - Flood secondary
+        - Take address
+        - Flood address
+        - Flood memory
+        - Take instruction
+    - Not jump
+        - Next (instruction)
+
+### 3
+
+- LSU
+    - LDM
+        - Next (instruction)
+    - STM
+        - Next (instruction)
+    - MOV - next 0
+- ALU - next 0
+- CLU - next 0
 
 # keyboard
 
