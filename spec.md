@@ -5,7 +5,7 @@
 
 | numonic | opp | cycles | dst | src1 | src2 | machine code |
 |---|---|---|---|---|---|---|
-| LSU | O | - | - | - | - | 00OOddddaaaabbbb |
+| LSU | O | - | - | - | - | 00OOddddaaaa---- |
 |   | HLT |   |   |   |   | 0000------------ |
 | * | LDM | 3 | r | m |   | 0001dddd-------- |
 | * | STM | 3 | m | r |   | 0010----aaaa---- |
@@ -20,17 +20,17 @@
 |   | BSL | 2 | r | r |   | 1010ddddaaaa---- |
 |   | BSR | 2 | r | r |   | 1011ddddaaaa---- |
 | CLU | O | - | - | - | - | 11ZNEGLSaaaabbbb |
-| * | NOP | 2 |   | r |   | 11000000aaaa---- |
 | * | JMP | 2 |   | r |   | 11110000aaaa---- |
-| * | JIZ | 2 |   | r |   | 11100000aaaa---- |
-| * | JNZ | 2 |   | r |   | 11010000aaaa---- |
-| * | JIS | 2 |   | r |   | 11000001aaaa---- |
-| * | JIE | 2 |   | r | r | 11001000aaaabbbb |
-| * | JNE | 2 |   | r | r | 11000110aaaabbbb |
-| * | JGR | 2 |   | r | r | 11000100aaaabbbb |
+| * | JPZ | 2 |   | r |   | 11100000aaaa---- |
+| * | JPN | 2 |   | r |   | 11010000aaaa---- |
+| * | JPS | 2 |   | r |   | 11000001aaaa---- |
+| * | JPE | 2 |   | r | r | 11001000aaaabbbb |
+| * | JPG | 2 |   | r | r | 11000100aaaabbbb |
+| * | JPL | 2 |   | r | r | 11000010aaaabbbb |
+| * | JGL | 2 |   | r | r | 11000110aaaabbbb |
 | * | JGE | 2 |   | r | r | 11001100aaaabbbb |
-| * | JLS | 2 |   | r | r | 11000010aaaabbbb |
 | * | JLE | 2 |   | r | r | 11001010aaaabbbb |
+| * | NOP | 2 |   | r |   | 11000000-------- |
 
 *instruction also includes location immeditly after in memory for addressing
 
@@ -51,7 +51,7 @@ S: signed flag mask
     - Flood memory bus
     - Take memory bus
     - Flood individual to ALU/CLU
-    - Take individual from ALU/CLU
+    - Take individual to temp
 - address
     - Flood address bus
     - Take secondary
@@ -62,8 +62,11 @@ S: signed flag mask
 - secondary
     - Take memory bus
     - Flood address bus
+- temp
+    - Take ALU
+    - Flood individual
 - jump - single bit
-    - Write from CLU
+    - Take CLU
 
 ## memory layout
 
@@ -91,7 +94,7 @@ S: signed flag mask
     - Enable ALU
     - Flood regester[source1]
     - Flood regester[source2]
-    - Take regester[destenation]
+    - Take temp
 - CLU
     - Next (secondary)
     - Enable CLU
@@ -114,6 +117,8 @@ S: signed flag mask
         - Next (instruction)
 - ALU
     - Next (instruction)
+    - Flood temp
+    - Take regester[destenation]
 - CLU
     - If jump
         - Flood secondary
@@ -135,19 +140,63 @@ S: signed flag mask
 - ALU - next 0
 - CLU - next 0
 
+# asm
+
+## opperators
+
+```
+- ADD   +a,b:d
+- AND   &a,b:d
+- IOR   |a,b:d
+- NOT   !a:d
+- INC   [a:d
+- DEC   ]a:d
+- BSL   {a:d
+- BSR   }a:d
+```
+
+## opperator macros
+
+```
+- MUL   *a,b:d
+    -
+- DIV   /a,b:d
+    -
+- MOD   %a,b:d
+    -
+- SWS   ~a:d
+    -   !a:a
+    -   ]a:a
+- SUB   -a,b:d
+    -   ~a:a
+    -   +a:b:d
+
+## conditionals
+
+```
+- JPZ   ?0a:()
+- JPN   ?!a:()
+- JPS   ?~a:()
+- JPE   ?=a,b:()
+- JPG   ?<a,b:()
+- JPL   ?>a,b:()
+- JGL   ?<>a,b:()
+- JGE   ?>=a,b:()
+- JLE   ?<=a,b:()
+```
 # keyboard
 
-|**Default**|   |   |   |   |   |   |   |   |   |
+|Default||||||||||
 |---|---|---|---|---|---|---|---|---|---|
-|[ r  ]|[ l  ]|[ m  ]|[ n  ]|      |      |[ v  ]|[ d  ]|[ z  ]|[ j  ]| 111xxx
-|[ a  ]|[ e  ]|[ i  ]|[ w  ]|      |      |[ f  ]|[ t  ]|[ s  ]|[ x  ]| 110xxx
-|[ +  ]|[ >  ]|[ :  ]|[ (  ]|      |      |[ )  ]|[ =  ]|[ <  ]|[ /  ]| 100xxx
-|      |      |[ \e ]|[ \b ]|[ \h ]|[LAY2]|[ _  ]|[ \n ]|      |      |
-|**LAY2**|   |   |   |   |   |   |   |   |   |
-|[1111]|[1110]|[1101]|[1100]|      |      |[1000]|[1001]|[1010]|[1011]| 011xxx
-|[0111]|[0110]|[0101]|[0100]|      |      |[0000]|[0001]|[0010]|[0011]| 010xxx
-|[ *  ]|[ {  ]|[ \| ]|[ !  ]|      |      |[ &  ]|[ ^  ]|[ }  ]|[ %  ]| 101xxx
-|      |      |[ \e ]|[ \b ]|[ \h ]|[LAY2]|[ _  ]|[ \n ]|      |      |
+| r  | l  | m  | n  | (  | )  | v  | d  | z  | j  | 111xxx
+| a  | e  | i  | w  | .  | ,  | f  | t  | s  | x  | 110xxx
+| %  | /  | +  | <  | ?  | :  | >  | -  | *  | =  | 100xxx
+|    |    | \e | \b | \h | L2 | _  | \n |    |    |
+|Layer 2||||||||||
+|1111|1110|1101|1100| (  | )  |1000|1001|1010|1011| 011xxx
+|0111|0110|0101|0100| .  | ,  |0000|0001|0010|0011| 010xxx
+| ~  | }  | [  | |  | ?  | :  | &  | ]  | {  | !  | 101xxx
+|    |    | \e | \b | \h | L2 | _  | \n |    |    |
 
 # ascii
 
@@ -162,44 +211,44 @@ S: signed flag mask
 00000111  
 00001000  
 00001001  
-00001010  
-00001011  
-00001100  
-00001101  
-00001110  
-00001111  
-00010000 0000  
-00010001 0001  
-00010010 0010  
-00010011 0011  
-00010100 0100  
-00010101 0101  
-00010110 0110  
-00010111 0111  
-00011000 1000  
-00011001 1001  
-00011010 1010  
-00011011 1011  
-00011100 1100  
-00011101 1101  
-00011110 1110  
-00011111 1111  
-00100000 +  
-00100001 >  
-00100010 :  
-00100011 (  
-00100100 )  
-00100101 =  
-00100110 <  
-00100111 /  
-00101000 *  
-00101001 {  
-00101010 |  
+00001010 ?  
+00001011 :  
+00001100 .  
+00001101 ,  
+00001110 (  
+00001111 )  
+00010000 0000 0  
+00010001 0001 1  
+00010010 0010 2  
+00010011 0011 3  
+00010100 0100 4  
+00010101 0101 5  
+00010110 0110 6  
+00010111 0111 7  
+00011000 1000 8  
+00011001 1001 9  
+00011010 1010 10  
+00011011 1011 11  
+00011100 1100 12  
+00011101 1101 13  
+00011110 1110 14  
+00011111 1111 15  
+00100000 >  
+00100001 -  
+00100010 *  
+00100011 =  
+00100100 >  
+00100101 +  
+00100110 /  
+00100111 %  
+00101000 &  
+00101001 ]  
+00101010 {  
 00101011 !  
-00101100 &  
-00101101 #  
+00101100 |  
+00101101 [  
 00101110 }  
-00101111 %  
+00101111 ~  
 00110000 f  
 00110001 t  
 00110010 s  
