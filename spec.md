@@ -140,6 +140,40 @@ S: signed flag mask
 - ALU - next 0
 - CLU - next 0
 
+# prl
+
+pointers?
+keywords?
+stdlib?
+program input?
+
+```
+data():(
+    variable=0
+    array.3=(9,3,1)
+    struct(
+        first = 0,
+        second = 0
+    )
+)
+
+function(a,b,d):(
+    !a:a
+    +a,1:d
+    +a,b:d
+)
+
+start():(
+    +array.2,array.0:struct.first
+    loop(<>array(1),variable):(
+        function(struct.first,struct.second,variable)
+    )
+    if(=array(1),variable):(
+        function(struct.first,struct.second,variable)
+    )
+)
+```
+
 # asm
 
 ## opperators
@@ -149,10 +183,24 @@ S: signed flag mask
 - AND   &a,b:d
 - IOR   |a,b:d
 - NOT   !a:d
-- INC   [a:d
-- DEC   ]a:d
-- BSL   {a:d
-- BSR   }a:d
+- INC   +a,1:d
+- DEC   -a,1:d
+- BSL   *a,2:d
+- BSR   /a,2:d
+```
+
+## conditionals
+
+```
+- JPZ   =a,0:()
+- JPN   <>a,0:()
+- JPS   <a,0:()
+- JPE   =a,b:()
+- JPG   <a,b:()
+- JPL   >a,b:()
+- JGL   <>a,b:()
+- JGE   >=a,b:()
+- JLE   <=a,b:()
 ```
 
 ## opperator macros
@@ -164,38 +212,24 @@ S: signed flag mask
     -
 - MOD   %a,b:d
     -
-- SWS   ~a:d
-    -   !a:a
-    -   ]a:a
 - SUB   -a,b:d
-    -   ~a:a
+    -   !a:a
+    -   +a,1:d
     -   +a:b:d
-
-## conditionals
-
 ```
-- JPZ   ?0a:()
-- JPN   ?!a:()
-- JPS   ?~a:()
-- JPE   ?=a,b:()
-- JPG   ?<a,b:()
-- JPL   ?>a,b:()
-- JGL   ?<>a,b:()
-- JGE   ?>=a,b:()
-- JLE   ?<=a,b:()
-```
+
 # keyboard
 
 |Default||||||||||
 |---|---|---|---|---|---|---|---|---|---|
-| r  | l  | m  | n  | (  | )  | v  | d  | z  | j  | 111xxx
-| a  | e  | i  | w  | .  | ,  | f  | t  | s  | x  | 110xxx
-| %  | /  | +  | <  | ?  | :  | >  | -  | *  | =  | 100xxx
+| r  | l  | m  | n  |    |    | v  | d  | z  | j  | 111xxx
+| a  | e  | i  | w  |    |    | f  | t  | s  | x  | 110xxx
+| &  | .  | ,  | (  |    |    | )  | =  | /  | +  | 100xxx
 |    |    | \e | \b | \h | L2 | _  | \n |    |    |
 |Layer 2||||||||||
-|1111|1110|1101|1100| (  | )  |1000|1001|1010|1011| 011xxx
-|0111|0110|0101|0100| .  | ,  |0000|0001|0010|0011| 010xxx
-| ~  | }  | [  | |  | ?  | :  | &  | ]  | {  | !  | 101xxx
+|1111|1110|1101|1100|    |    |1000|1001|1010|1011| 011xxx
+|0111|0110|0101|0100|    |    |0000|0001|0010|0011| 010xxx
+| |  | !  | :  | <  |    |    | >  | *  | %  | -  | 101xxx
 |    |    | \e | \b | \h | L2 | _  | \n |    |    |
 
 # ascii
@@ -211,7 +245,7 @@ S: signed flag mask
 00000111  
 00001000  
 00001001  
-00001010 ?  
+00001010    
 00001011 :  
 00001100 .  
 00001101 ,  
