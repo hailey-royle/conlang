@@ -37,12 +37,8 @@ unsigned short instruction;
 unsigned short address;
 
 void VerifyArgs(const int argc) {
-    if (argc < 2) {
-        printf("no args given\n");
-        exit(1);
-    }
-    if (argc > 2) {
-        printf("too many args\n");
+    if (argc != 2) {
+        printf("Format: $ emu <filename>\n");
         exit(1);
     }
 }
