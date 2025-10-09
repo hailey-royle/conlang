@@ -47,25 +47,30 @@ S: signed flag mask
 
 ## regerster layout
 
-- genelar puropse (a-p)
+- genelar puropse (r0-r12)
     - Flood memory bus
     - Take memory bus
     - Flood individual to ALU/CLU
-    - Take individual to temp
-- address
-    - Flood address bus
-    - Take secondary
-    - Increment
-- instruction
+    - Take individual to result
+
+- instruction (r13 | INS)
     - Take memory bus
     - Flood CPU control
-- secondary
+
+- pointer (r14 | ADP)
     - Take memory bus
     - Flood address bus
-- temp
+
+- address (r15 | ADR)
+    - Flood address bus
+    - Take pointer
+    - Increment
+
+- result - not addressable
     - Take ALU
     - Flood individual
-- jump - single bit
+
+- jump - not addressable - single bit
     - Take CLU
 
 ## memory layout
@@ -86,17 +91,18 @@ S: signed flag mask
 
 - LSU
     - LDM/STM
-        - Next (secondary)
+        - Next (pointer)
     - MOV
         - Flood regester[source1]
         - Take regester[destenation]
 - ALU
+    - Next (instruction)
     - Enable ALU
     - Flood regester[source1]
     - Flood regester[source2]
-    - Take temp
+    - Take result
 - CLU
-    - Next (secondary)
+    - Next (pointer)
     - Enable CLU
     - Flood regester[source1]
     - Flood regester[source2]
@@ -106,22 +112,22 @@ S: signed flag mask
 
 - LSU
     - LDM
-        - Flood secondary
+        - Flood pointer
         - Flood memory
         - Take regester
     - STM
-        - Flood secondary
+        - Flood pointer
         - Take memory
         - Flood regester
     - MOV
         - Next (instruction)
 - ALU
-    - Next (instruction)
-    - Flood temp
+    - Flood result
     - Take regester[destenation]
+    - Next (instruction)
 - CLU
     - If jump
-        - Flood secondary
+        - Flood pointer
         - Take address
         - Flood address
         - Flood memory
