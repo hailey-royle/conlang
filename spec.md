@@ -47,7 +47,7 @@ S: signed flag mask
 
 ## regerster layout
 
-- genelar puropse (r0-r12)
+- general puropse (r0-r12)
     - Flood memory bus
     - Take memory bus
     - Flood individual to ALU/CLU
@@ -96,7 +96,6 @@ S: signed flag mask
         - Flood regester[source1]
         - Take regester[destenation]
 - ALU
-    - Next (instruction)
     - Enable ALU
     - Flood regester[source1]
     - Flood regester[source2]
