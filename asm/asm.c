@@ -1,15 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-short buffer;
+char* oppcode[] = { "HLT", "LDM", "STM", "MOV", "ADD", "AND", "IOR", "NOT", "INC", "DEC", "BSL", "BSR", "JMP", "JPZ", "JPN", "JPS", "JPE", "JPG", "JPL", "JGL", "JGE", "JLE", "NOP" }
+int oppcodeCount = 23;
+
+char* inputFile;
+char* outputFile;
+int inputFileLength;
+int inputPlace;
+int outputLength;
+
+struct instruction{
+    char numonic;
+    char opcode;
+    char destenation;
+    char sourceA;
+    char sourceB;
+};
+struct instruction instruction;
 
 void VerifyArgs(const int argc) {
-    if (argc < 2) {
-        printf("no args given");
-        exit(1);
-    }
-    if (argc > 2) {
-        printf("too many args");
+    if (argc != 2) {
+        printf("format: $ asm <filename>\n");
         exit(1);
     }
 }
@@ -20,34 +32,51 @@ void LoadFile(char* argv) {
         printf("file: %s not found\n", argv);
         exit(1);
     }
-    fread(&buffer, sizeof(buffer), 1, file);
+    inputFileLength = getdelim(&inputFile, 0, '\0', file);
     fclose(file);
 }
 
-void CreateTest() {
-    short test[10];
-    test[0] = 0b0111000100000000;// NOT r0 r1
-    test[1] = 0b0000000000010000;// STR r0
-    test[2] = 0b1111111111111111;
-    test[3] = 0b0000000000010000;// STR r0
-    test[4] = 0b1111111111111110;
-    test[5] = 0b0000000000010000;// STR r0
-    test[6] = 0b1111111111111101;
-    test[7] = 0b0000000000010000;// STR r0
-    test[8] = 0b1111111111111100;
+void BufferAppend(char* buffer, int* bufferLength, char* append, int appendLength) {
+    char* new = realloc(buffer, *bufferLength + appendLength);
+    if (new == NULL) {
+        return;
+    }
+    memcpy(&new[*bufferLength], append, appendLength);
+    buffer = new;
+    *bufferLength += appendLength;
+}
 
-    short nothing[1];
-    nothing[0] = 0b1100000000000000;
+int CompareOppcode(int oppcode) {
+    if (oppcode[oppcodeNumber][0] != intputFile[inputPlace]) {
+        return 0;
+    }
+    if (oppcode[oppcodeNumber][1] != intputFile[inputPlace + 1]) {
+        return 0;
+    }
+    if (oppcode[oppcodeNumber][2] != intputFile[inputPlace + 2]) {
+        return 0;
+    }
+    return 1;
+}
 
-    FILE *file = fopen("test.bin", "wb");
-    //fwrite(nothing, sizeof(nothing), 1, file);
-    fwrite(test, sizeof(test), 1, file);
-    fclose(file);
+void GetInstruction() {
+    for (int i = 0; i < insturctionCount; i++) {
+        if (CompareOppcode(i);) {
+            break;
+        }
+    }
+}
+
+void Assemble() {
+    while (inputFilePlace <= inputFileLength) {
+        GetInstruction();
+    }
 }
 
 int main(int argc, char* argv[]) {
     VerifyArgs(argc);
-    //LoadFile(argv[1]);
-    CreateTest();
+    LoadFile(argv[1]);
+    Assemble();
+    StoreFile();
     return 0;
 }
