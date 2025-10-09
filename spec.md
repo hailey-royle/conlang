@@ -47,30 +47,30 @@ S: signed flag mask
 
 ## regerster layout
 
-- general puropse (r0-r12)
+- general puropse (r0-r15)
     - Flood memory bus
     - Take memory bus
     - Flood individual to ALU/CLU
-    - Take individual to result
+    - Take individual from result
 
-- instruction (r13 | INS)
+- instruction
     - Take memory bus
     - Flood CPU control
 
-- pointer (r14 | ADP)
+- pointer
     - Take memory bus
     - Flood address bus
 
-- address (r15 | ADR)
+- address
     - Flood address bus
     - Take pointer
     - Increment
 
-- result - not addressable
+- result
     - Take ALU
     - Flood individual
 
-- jump - not addressable - single bit
+- jump - single bit
     - Take CLU
 
 ## memory layout
@@ -111,11 +111,11 @@ S: signed flag mask
 
 - LSU
     - LDM
-        - Flood pointer
+        - Flood pointer (address)
         - Flood memory
         - Take regester
     - STM
-        - Flood pointer
+        - Flood pointer (address)
         - Take memory
         - Flood regester
     - MOV
