@@ -13,14 +13,14 @@
 - ind / 0101 - 5/five
 - inz / 0110 - 6/six
 - inj / 0111 - 7/seven
-- isf / 1000 - -8/negitive eight
-- ist / 1001 - -7/negitive seven
-- iss / 1010 - -6/negitive six
-- isx / 1011 - -5/negitive five
-- isv / 1100 - -4/negitive four
-- isd / 1101 - -3/negitive three
-- isz / 1110 - -2/negitive two
-- isj / 1111 - -1/negitive one
+- isf / 1000 - 8/eight | -8/negitive eight
+- ist / 1001 - 9/nine | -7/negitive seven
+- iss / 1010 - 10/ten | -6/negitive six
+- isx / 1011 - 11/eleven |-5/negitive five
+- isv / 1100 - 12/twleve | -4/negitive four
+- isd / 1101 - 13/thirteen | -3/negitive three
+- isz / 1110 - 14/fourteen | -2/negitive two
+- isj / 1111 - 15/fifteen | -1/negitive one
 
 # language grammar
 
@@ -55,3 +55,25 @@
 - izm - smell
 - efs - taste
 - anz - touch
+
+# math/programming
+
+- ers - add
+- afr - subtract
+- als - multplication
+- idr - division
+- - remainder
+- - increment
+- - decrement
+- - shift left
+- - shift right
+- - and
+- - or
+- - xor
+- - not
+- - equals
+- - greater
+- - less
+- - signed
+- - if
+- - loop
