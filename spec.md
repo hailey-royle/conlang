@@ -3,238 +3,177 @@
 
 ## instructions
 
-| numonic | opp | cycles | dst | src1 | src2 | machine code |
-|---|---|---|---|---|---|---|
-| LSU | O | - | - | - | - | 00OOddddaaaa---- |
-|   | HLT |   |   |   |   | 0000------------ |
-| * | LDM | 3 | r | m |   | 0001dddd-------- |
-| * | STM | 3 | m | r |   | 0010----aaaa---- |
-|   | MOV | 2 | r | r |   | 0011ddddaaaa---- |
-| ALU | O | - | - | - | - | 01OOddddaaaabbbb |
-|   | ADD | 2 | r | r | r | 0100ddddaaaabbbb |
-|   | AND | 2 | r | r | r | 0101ddddaaaabbbb |
-|   | IOR | 2 | r | r | r | 0110ddddaaaabbbb |
-|   | NOT | 2 | r | r |   | 0111ddddaaaa---- |
-|   | INC | 2 | r | r |   | 1000ddddaaaa---- |
-|   | DEC | 2 | r | r |   | 1001ddddaaaa---- |
-|   | BSL | 2 | r | r |   | 1010ddddaaaa---- |
-|   | BSR | 2 | r | r |   | 1011ddddaaaa---- |
-| CLU | O | - | - | - | - | 11ZNEGLSaaaabbbb |
-| * | JMP | 2 |   | r |   | 11110000aaaa---- |
-| * | JPZ | 2 |   | r |   | 11100000aaaa---- |
-| * | JPN | 2 |   | r |   | 11010000aaaa---- |
-| * | JPS | 2 |   | r |   | 11000001aaaa---- |
-| * | JPE | 2 |   | r | r | 11001000aaaabbbb |
-| * | JPG | 2 |   | r | r | 11000100aaaabbbb |
-| * | JPL | 2 |   | r | r | 11000010aaaabbbb |
-| * | JGL | 2 |   | r | r | 11000110aaaabbbb |
-| * | JGE | 2 |   | r | r | 11001100aaaabbbb |
-| * | JLE | 2 |   | r | r | 11001010aaaabbbb |
-| * | NOP | 2 |   | r |   | 11000000-------- |
+| numonic | dst | srca | srcb | code | assmbly | compiled |
+|---|---|---|---|---|
+|^JMP | - | r | r | 0000NEGLaaaabbbb | JMP(*flags*,a,b);(d) | ?adr;imm  |
+|^STM | m | r | - | 0001----aaaa---- | STM(a);(d)           | mem.imm=a |
+|^LDM | r | m | - | 0010dddd-------- | LDM(a);(d)           | d=mem.imm |
+|^LDI | r | i | - | 0011dddd-------- | LDI(a);(d)           | d=imm     |
+| MOV | r | r | - | 0100ddddaaaa---- | MOV(a);(d)           | d=a       |
+| STP | p | r | - | 0101ddddaaaa---- | STP(a);(d)           | mem.d=a   |
+| LDP | r | p | - | 0110ddddaaaa---- | LDP(a);(d)           | d=mem.a   |
+| ADD | r | r | r | 0111ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d    |
+| AND | r | r | r | 1000ddddaaaabbbb | AND(a,b);(d)         | &a,b;d    |
+| IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | |a,b;d    |
+| XOR | r | r | r | 1010ddddaaaabbbb | XOR(a,b);(d)         | #a,b;d    |
+| NOT | r | r | - | 1011ddddaaaa---- | NOT(a);(d)           | !a;d      |
+| SHL | r | r | - | 1100ddddaaaa---- | SHL(a);(d)           | {a;d      |
+| SHR | r | r | - | 1101ddddaaaa---- | SHR(a);(d)           | }a;d      |
+| INC | r | r | - | 1110ddddaaaa---- | INC(a);(d)           | +a,1;d    |
+| DEC | r | r | - | 1111ddddaaaa---- | DEC(a);(d)           | +a,-1;d   |
 
-*instruction also includes location immeditly after in memory for addressing
-
-O: oppcode  
-d: destination  
-a: source1  
-b: source2  
-Z: zero flag mask  
-N: not zero flag mask  
-E: equals flag mask  
-G: greater then flag mask  
-L: less then flag mask  
-S: signed flag mask  
+^instruction also includes location immeditly after in memory for addressing
 
 ## regerster layout
 
-- general puropse (r0-r15)
+- general puropse (r0-rf)
     - Flood memory bus
     - Take memory bus
-    - Flood individual to ALU/CLU
-    - Take individual from result
+    - Flood address bus
+    - individual to ALU
 
 - instruction
     - Take memory bus
     - Flood CPU control
 
-- pointer
+- address
     - Take memory bus
     - Flood address bus
-
-- address
-    - Flood address bus
-    - Take pointer
     - Increment
-
-- result
-    - Take ALU
-    - Flood individual
-
-- jump - single bit
-    - Take CLU
-
-## memory layout
-
-0x0000-0xefff: general purpose  
-0xf000-0xffff: screen output  
-: keyboard input?  
 
 ## cycles
 
-- Next ()
-    - Increment address
-    - Flood address
-    - Flood memory
-    - Take ()
+- next ins
+    - Inc   adr    
+    - Flood adr    adr bus
+    - Flood mem    mem bus
+    - Take  ins    mem bus
+
+### 0
+
+- JMP
+    - Inc   adr    
+    - Flood adr    adr bus
+    - Flood mem    mem bus
+    - Take  reg[p] mem bus
+    - Flood reg[a] ALU
+    - Flood reg[b] ALU
+- STM
+    - Inc   adr    
+    - Flood adr    adr bus
+    - Flood mem    mem bus
+    - Take  reg[p] mem bus
+- LDM
+    - Inc   adr    
+    - Flood adr    adr bus
+    - Flood mem    mem bus
+    - Take  reg[p] mem bus
+- LDI
+    - Inc   adr    
+    - Flood adr    adr bus
+    - Flood mem    mem bus
+    - Take  reg[d] mem bus
+- MOV
+    - Flood reg[a] mem bus
+    - Take  reg[d] mem bus
+- STP
+    - Flood reg[d] adr bus
+    - Take  mem    mem bus
+    - Flood reg[a] mem bus
+- LDP
+    - Flood reg[d] adr bus
+    - Flood mem    mem bus
+    - Take  reg[a] mem bus
+- ALU
+    - Flood reg[a] ALU
+    - Flood reg[b] ALU
+    - Take  reg[d] mem bus
 
 ### 1
 
-- LSU
-    - LDM/STM
-        - Next (pointer)
-    - MOV
-        - Flood regester[source1]
-        - Take regester[destenation]
+- JMP
+    - if jump
+        - Flood reg[p] mem bus
+        - Take  adr    mem bus
+    - not jump
+        - next  ins
+- STM
+    - Flood reg[p] adr bus
+    - Take  mem    mem bus
+    - Flood reg[a] mem bus
+- LDM
+    - Flood reg[p] adr bus
+    - Flood mem    mem bus
+    - Take  reg[a] mem bus
+- LDI
+    - next  ins
+- STP
+    - next  ins
+- LDP
+    - next  ins
+- MOV
+    - next  ins
 - ALU
-    - Enable ALU
-    - Flood regester[source1]
-    - Flood regester[source2]
-    - Take result
-- CLU
-    - Next (pointer)
-    - Enable CLU
-    - Flood regester[source1]
-    - Flood regester[source2]
-    - Take jump
+    - next  ins
 
 ### 2
 
-- LSU
-    - LDM
-        - Flood pointer (address)
-        - Flood memory
-        - Take regester
-    - STM
-        - Flood pointer (address)
-        - Take memory
-        - Flood regester
-    - MOV
-        - Next (instruction)
-- ALU
-    - Flood result
-    - Take regester[destenation]
-    - Next (instruction)
-- CLU
-    - If jump
-        - Flood pointer
-        - Take address
-        - Flood address
-        - Flood memory
-        - Take instruction
-    - Not jump
-        - Next (instruction)
+- STM
+    - next  ins
+- LDM
+    - next  ins
 
-### 3
+# pgl
 
-- LSU
-    - LDM
-        - Next (instruction)
-    - STM
-        - Next (instruction)
-    - MOV - next 0
-- ALU - next 0
-- CLU - next 0
+//function declaration
+    function(arg1,arg2).(
+        *body*
+    );(return)
 
-# prl
+//function call
+    function(arg1,arg2);(return)
 
-pointers?
-keywords?
-stdlib?
-program input?
+//start
+    start().(
+        *body*
+    );()
 
-```
-data():(
-    variable=0
-    array.3=(9,3,1)
-    struct(
-        first = 0,
-        second = 0
+//data
+    data().(
+        *body*
+    );()
+
+//variable
+    name=value
+
+//array
+    name.count=(value1,value2)
+
+//struct
+    name(
+        name1=value
+        name2=value
     )
-)
 
-function(a,b,d):(
-    !a:a
-    +a,1:d
-    +a,b:d
-)
-
-start():(
-    +array.2,array.0:struct.first
-    loop(<>array(1),variable):(
-        function(struct.first,struct.second,variable)
-    )
-    if(=array(1),variable):(
-        function(struct.first,struct.second,variable)
-    )
-)
-```
-
-# asm
-
-## opperators
-
-```
-- ADD   +a,b:d
-- AND   &a,b:d
-- IOR   |a,b:d
-- NOT   !a:d
-- INC   +a,1:d
-- DEC   -a,1:d
-- BSL   *a,2:d
-- BSR   /a,2:d
-```
-
-## conditionals
-
-```
-- JPZ   =a,0:()
-- JPN   <>a,0:()
-- JPS   <a,0:()
-- JPE   =a,b:()
-- JPG   <a,b:()
-- JPL   >a,b:()
-- JGL   <>a,b:()
-- JGE   >=a,b:()
-- JLE   <=a,b:()
-```
-
-## opperator macros
-
-```
-- MUL   *a,b:d
-    -
-- DIV   /a,b:d
-    -
-- MOD   %a,b:d
-    -
-- SUB   -a,b:d
-    -   !a:a
-    -   +a,1:d
-    -   +a:b:d
-```
+Arathmetic Opearations, Conditionals, and Loops are functions
 
 # keyboard
 
+. not an end
+, end of list
+; end of clause
+: end of sentance
+
 |Default||||||||||
 |---|---|---|---|---|---|---|---|---|---|
-| r  | l  | m  | n  |    |    | v  | d  | z  | j  | 111xxx
-| a  | e  | i  | w  |    |    | f  | t  | s  | x  | 110xxx
-| &  | .  | ,  | (  |    |    | )  | =  | /  | +  | 100xxx
+| r  | l  | m  | n  | (  | )  | v  | d  | z  | j  | 111xxx
+| a  | e  | i  | w  | :  | ;  | f  | t  | s  | x  | 110xxx
+| \| | &  | ?  | <  | .  | ,  | >  | =  | /  | +  | 100xxx
 |    |    | \e | \b | \h | L2 | _  | \n |    |    |
 |Layer 2||||||||||
-|1111|1110|1101|1100|    |    |1000|1001|1010|1011| 011xxx
-|0111|0110|0101|0100|    |    |0000|0001|0010|0011| 010xxx
-| \| | !  | :  | <  |    |    | >  | *  | %  | -  | 101xxx
+|1111|1110|1101|1100| (  | )  |1000|1001|1010|1011| 011xxx
+|0111|0110|0101|0100| :  | ;  |0000|0001|0010|0011| 010xxx
+| #  | !  | @  | {  | .  | ,  | }  | *  | %  | -  | 101xxx
 |    |    | \e | \b | \h | L2 | _  | \n |    |    |
 
 # ascii
@@ -247,10 +186,10 @@ start():(
 00000100 \h  
 00000101 \b  
 00000110 \e  
-00000111  
-00001000  
-00001001  
-00001010    
+00000111   
+00001000   
+00001001   
+00001010   
 00001011   
 00001100   
 00001101   
