@@ -6,16 +6,16 @@
 | numonic | dst | srca | srcb | code | assmbly | compiled |
 |---|---|---|---|---|
 |^JMP | - | r | r | 0000NEGLaaaabbbb | JMP(*flags*,a,b);(d) | ?adr;imm  |
-|^STM | m | r | - | 0001----aaaa---- | STM(a);(d)           | mem.imm=a |
+|^LDI | r | i | - | 0001dddd-------- | LDI(a);(d)           | d=imm     |
 |^LDM | r | m | - | 0010dddd-------- | LDM(a);(d)           | d=mem.imm |
-|^LDI | r | i | - | 0011dddd-------- | LDI(a);(d)           | d=imm     |
-| MOV | r | r | - | 0100ddddaaaa---- | MOV(a);(d)           | d=a       |
+|^STM | m | r | - | 0011----aaaa---- | STM(a);(d)           | mem.imm=a |
+| LDP | r | p | - | 0100ddddaaaa---- | LDP(a);(d)           | d=mem.a   |
 | STP | p | r | - | 0101ddddaaaa---- | STP(a);(d)           | mem.d=a   |
-| LDP | r | p | - | 0110ddddaaaa---- | LDP(a);(d)           | d=mem.a   |
+| MOV | r | r | - | 0110ddddaaaa---- | MOV(a);(d)           | d=a       |
 | ADD | r | r | r | 0111ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d    |
 | AND | r | r | r | 1000ddddaaaabbbb | AND(a,b);(d)         | &a,b;d    |
 | IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | |a,b;d    |
-| XOR | r | r | r | 1010ddddaaaabbbb | XOR(a,b);(d)         | #a,b;d    |
+| XOR | r | r | r | 1010ddddaaaabbbb | IOR(a,b);(d)         | #a,b;d    |
 | NOT | r | r | - | 1011ddddaaaa---- | NOT(a);(d)           | !a;d      |
 | SHL | r | r | - | 1100ddddaaaa---- | SHL(a);(d)           | {a;d      |
 | SHR | r | r | - | 1101ddddaaaa---- | SHR(a);(d)           | }a;d      |
