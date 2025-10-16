@@ -1,82 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-char* oppcode[] = { "HLT", "LDM", "STM", "MOV", "ADD", "AND", "IOR", "NOT", "INC", "DEC", "BSL", "BSR", "JMP", "JPZ", "JPN", "JPS", "JPE", "JPG", "JPL", "JGL", "JGE", "JLE", "NOP" }
-int oppcodeCount = 23;
-
-char* inputFile;
-char* outputFile;
-int inputFileLength;
-int inputPlace;
-int outputLength;
-
-struct instruction{
-    char numonic;
-    char opcode;
-    char destenation;
-    char sourceA;
-    char sourceB;
+struct buffer{
+    char* buffer;
+    size_t length;
 };
-struct instruction instruction;
+struct buffer code;
 
-void VerifyArgs(const int argc) {
+struct file{
+    struct buffer data;
+    char* name;
+    int possition;
+};
+struct file file;
+
+
+void VerifyArgs(int argc, char* argv[]) {
     if (argc != 2) {
         printf("format: $ asm <filename>\n");
         exit(1);
     }
+    file.name = argv[1];
 }
 
-void LoadFile(char* argv) {
-    FILE *file = fopen(argv, "rb");
-    if (file == NULL) {
-        printf("file: %s not found\n", argv);
+void LoadFile() {
+    FILE* fp = fopen(file.name, "rb");
+    if (fp == NULL) {
+        printf("file: %s not found\n", file.name);
         exit(1);
     }
-    inputFileLength = getdelim(&inputFile, 0, '\0', file);
-    fclose(file);
+    file.data.length = getdelim(&file.data.buffer, &file.data.length, '\0', fp);
+    fclose(fp);
 }
 
-void BufferAppend(char* buffer, int* bufferLength, char* append, int appendLength) {
-    char* new = realloc(buffer, *bufferLength + appendLength);
+void BufferAppend(struct buffer* buffer, char* append, int appendLength) {
+    char* new = realloc(buffer->buffer, buffer->length + appendLength);
     if (new == NULL) {
-        return;
+        printf("realloc failed\n");
+        exit(1);
     }
-    memcpy(&new[*bufferLength], append, appendLength);
-    buffer = new;
-    *bufferLength += appendLength;
+    memcpy(&new[buffer->length], append, appendLength);
+    buffer->buffer = new;
+    buffer->length += appendLength;
 }
 
-int CompareOppcode(int oppcode) {
-    if (oppcode[oppcodeNumber][0] != intputFile[inputPlace]) {
-        return 0;
-    }
-    if (oppcode[oppcodeNumber][1] != intputFile[inputPlace + 1]) {
-        return 0;
-    }
-    if (oppcode[oppcodeNumber][2] != intputFile[inputPlace + 2]) {
-        return 0;
-    }
-    return 1;
-}
-
-void GetInstruction() {
-    for (int i = 0; i < insturctionCount; i++) {
-        if (CompareOppcode(i);) {
-            break;
-        }
-    }
-}
-
-void Assemble() {
-    while (inputFilePlace <= inputFileLength) {
-        GetInstruction();
-    }
+void StoreFile() {
+    int nameLength = strlen(file.name);
+    file.name[nameLength - 3] = 'b';
+    file.name[nameLength - 2] = 'i';
+    file.name[nameLength - 1] = 'n';
+    FILE* fp = fopen(file.name, "wb");
+    fwrite(code.buffer, code.length, 1, fp);
+    fclose(fp);
 }
 
 int main(int argc, char* argv[]) {
-    VerifyArgs(argc);
-    LoadFile(argv[1]);
-    Assemble();
+    VerifyArgs(argc, argv);
+    LoadFile();
+    code.buffer = file.data.buffer;
+    code.length = file.data.length;
     StoreFile();
     return 0;
 }
