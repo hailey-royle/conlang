@@ -4,23 +4,23 @@
 ## instructions
 
 | numonic | dst | srca | srcb | code | assmbly | compiled |
-|---|---|---|---|---|
-|^JMP | - | r | r | 0000NEGLaaaabbbb | JMP(*flags*,a,b);(d) | ?adr;imm  |
-|^LDI | r | i | - | 0001dddd-------- | LDI(a);(d)           | d=imm     |
-|^LDM | r | m | - | 0010dddd-------- | LDM(a);(d)           | d=mem.imm |
-|^STM | m | r | - | 0011----aaaa---- | STM(a);(d)           | mem.imm=a |
-| LDP | r | p | - | 0100ddddaaaa---- | LDP(a);(d)           | d=mem.a   |
-| STP | p | r | - | 0101ddddaaaa---- | STP(a);(d)           | mem.d=a   |
-| MOV | r | r | - | 0110ddddaaaa---- | MOV(a);(d)           | d=a       |
-| ADD | r | r | r | 0111ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d    |
-| AND | r | r | r | 1000ddddaaaabbbb | AND(a,b);(d)         | &a,b;d    |
-| IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | |a,b;d    |
-| XOR | r | r | r | 1010ddddaaaabbbb | IOR(a,b);(d)         | #a,b;d    |
-| NOT | r | r | - | 1011ddddaaaa---- | NOT(a);(d)           | !a;d      |
-| SHL | r | r | - | 1100ddddaaaa---- | SHL(a);(d)           | {a;d      |
-| SHR | r | r | - | 1101ddddaaaa---- | SHR(a);(d)           | }a;d      |
-| INC | r | r | - | 1110ddddaaaa---- | INC(a);(d)           | +a,1;d    |
-| DEC | r | r | - | 1111ddddaaaa---- | DEC(a);(d)           | +a,-1;d   |
+|---|---|---|---|---|---|---|
+|^JMP | - | r | r | 0000NEGLaaaabbbb | JMP(*flags*,a,b);(d) | ?();()  |
+|^LDI | r | i | - | 0001dddd-------- | LDI(a);(d)           |         |
+|^LDM | r | m | - | 0010dddd-------- | LDM(a);(d)           |         |
+|^STM | m | r | - | 0011----aaaa---- | STM(a);(d)           |         |
+| LDP | r | p | - | 0100ddddaaaa---- | LDP(a);(d)           |         |
+| STP | p | r | - | 0101ddddaaaa---- | STP(a);(d)           |         |
+| MOV | r | r | - | 0110ddddaaaa---- | MOV(a);(d)           |         |
+| ADD | r | r | r | 0111ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d  |
+| AND | r | r | r | 1000ddddaaaabbbb | AND(a,b);(d)         | &a,b;d  |
+| IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | |a,b;d  |
+| XOR | r | r | r | 1010ddddaaaabbbb | IOR(a,b);(d)         | #a,b;d  |
+| NOT | r | r | - | 1011ddddaaaa---- | NOT(a);(d)           | !a;d    |
+| SHL | r | r | - | 1100ddddaaaa---- | SHL(a);(d)           | {a;d    |
+| SHR | r | r | - | 1101ddddaaaa---- | SHR(a);(d)           | }a;d    |
+| INC | r | r | - | 1110ddddaaaa---- | INC(a);(d)           | +a,1;d  |
+| DEC | r | r | - | 1111ddddaaaa---- | DEC(a);(d)           | +a,-1;d |
 
 ^instruction also includes location immeditly after in memory for addressing
 
@@ -123,46 +123,46 @@
 - LDM
     - next  ins
 
-# pgl
+# compiled
 
-//function declaration
-    function(arg1,arg2).(
-        *body*
-    );(return)
+//function declaration  
+    function(arg1,arg2).(  
+        *body*  
+    );(return)  
 
-//function call
-    function(arg1,arg2);(return)
+//function call  
+    function(arg1,arg2);(return)  
 
-//start
-    start().(
-        *body*
-    );()
+//start  
+    start().(  
+        *body*  
+    );()  
 
-//data
-    data().(
-        *body*
-    );()
+//data  
+    data().(  
+        *body*  
+    );()  
 
-//variable
-    name=value
+//variable 
+    name=value  
 
-//array
-    name.count=(value1,value2)
+//array  
+    name.count=(value1,value2)  
 
-//struct
-    name(
-        name1=value
-        name2=value
-    )
+//struct  
+    name(  
+        name1=value  
+        name2=value  
+    )  
 
 Arathmetic Opearations, Conditionals, and Loops are functions
 
 # keyboard
 
-. not an end
-, end of list
-; end of clause
-: end of sentance
+. not an end  
+, end of list  
+; end of clause  
+: end of sentance  
 
 |Default||||||||||
 |---|---|---|---|---|---|---|---|---|---|
