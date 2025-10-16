@@ -14,7 +14,7 @@
 | MOV | r | r | - | 0110ddddaaaa---- | MOV(a);(d)           |         |
 | ADD | r | r | r | 0111ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d  |
 | AND | r | r | r | 1000ddddaaaabbbb | AND(a,b);(d)         | &a,b;d  |
-| IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | |a,b;d  |
+| IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | \|a,b;d |
 | XOR | r | r | r | 1010ddddaaaabbbb | IOR(a,b);(d)         | #a,b;d  |
 | NOT | r | r | - | 1011ddddaaaa---- | NOT(a);(d)           | !a;d    |
 | SHL | r | r | - | 1100ddddaaaa---- | SHL(a);(d)           | {a;d    |
@@ -125,6 +125,7 @@
 
 # compiled
 
+```
 //function declaration  
     function(arg1,arg2).(  
         *body*  
@@ -154,12 +155,13 @@
         name1=value  
         name2=value  
     )  
+```
 
 Arathmetic Opearations, Conditionals, and Loops are functions
 
 # keyboard
 
-. not an end  
+. not an end   
 , end of list  
 ; end of clause  
 : end of sentance  
