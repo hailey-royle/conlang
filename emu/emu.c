@@ -1,28 +1,29 @@
 #include <raylib.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-#define STR 0
-#define LOD 1
-#define MOV 2
-#define IOR 3
-#define ADD 4
-#define AND 5
-#define XOR 6
-#define NOT 7
-#define INC 8
-#define DEC 9
-#define BSL 10
-#define BSR 11
-#define CLU 3
-#define ZERO_MASK     0b0010000000000000
-#define NOT_ZERO_MASK 0b0001000000000000
-#define EQUALS_MASK   0b0000100000000000
-#define GREATER_MASK  0b0000010000000000
-#define LESS_MASK     0b0000001000000000
-#define SIGNED_MASK   0b0000000100000000
-#define LSB_FOUR_MASK 0b0000000000001111
-#define MAX_SIGNED 32767
+#define JMP 0
+#define LDI 1
+#define LDM 2
+#define STM 3
+#define LDP 4
+#define STP 5
+#define MOV 6
+#define ADD 7
+#define AND 8
+#define IOR 9
+#define XOR 10
+#define NOT 11
+#define SHL 12
+#define SHR 13
+#define INC 14
+#define DEC 15
+#define NOT_ZERO_MASK   0b0000100000000000
+#define EQUALS_MASK     0b0000010000000000
+#define GREATER_MASK    0b0000001000000000
+#define LESS_MASK       0b0000000100000000
+#define RIGHT_FOUR_MASK 0b0000000000001111
 
 #define RAM_SIZE 65536 //2^16
 #define REG_SIZE 16
@@ -61,38 +62,38 @@ void ExecuteInstruction() {
         return;
     }
     instruction = memory[address];
-    address++;
-    unsigned short numonic = instruction >> 14;
-    unsigned short oppcode = instruction >> 12;
-    unsigned short destination = (instruction >> 8) & LSB_FOUR_MASK;
-    unsigned short source1 = (instruction >> 4) & LSB_FOUR_MASK;
-    unsigned short source2 = instruction & LSB_FOUR_MASK;
-    if      (oppcode == STR) { memory[memory[address]] = regester[source1]; address++; }
-    else if (oppcode == LOD) { regester[destination] = memory[memory[address]]; address++; }
-    else if (oppcode == MOV) { regester[destination] = regester[source1]; }
-    else if (oppcode == IOR) { regester[destination] = regester[source1] | regester[source2]; }
-    else if (oppcode == ADD) { regester[destination] = regester[source1] + regester[source2]; }
-    else if (oppcode == AND) { regester[destination] = regester[source1] & regester[source2]; }
-    else if (oppcode == XOR) { regester[destination] = regester[source1] ^ regester[source2]; }
-    else if (oppcode == NOT) { regester[destination] = ~regester[source1]; }
-    else if (oppcode == INC) { regester[destination] = regester[source1]++; }
-    else if (oppcode == DEC) { regester[destination] = regester[source1]--; }
-    else if (oppcode == BSL) { regester[destination] = regester[source1] << 1; }
-    else if (oppcode == BSR) { regester[destination] = regester[source1] >> 1; }
-    else if (numonic == CLU) {
-        bool zeroCheck = instruction & ZERO_MASK;
+    unsigned short numonic = instruction >> 12;
+    unsigned short destination = (instruction >> 8) & RIGHT_FOUR_MASK;
+    unsigned short sourceA = (instruction >> 4) & RIGHT_FOUR_MASK;
+    unsigned short sourceB = instruction & RIGHT_FOUR_MASK;
+
+    if (numonic == JMP) { 
+        address++;
         bool notZeroCheck = instruction & NOT_ZERO_MASK;
         bool equalsCheck = instruction & EQUALS_MASK;
         bool greaterCheck = instruction & GREATER_MASK;
         bool lessCheck = instruction & LESS_MASK;
-        bool signedCheck = instruction & SIGNED_MASK;
-        if      (zeroCheck & (regester[source1] == 0)) { instruction = memory[address]; address++; }
-        else if (notZeroCheck & (regester[source1] != 0)) { instruction = memory[address]; address++; }
-        else if (equalsCheck & (regester[source1] == regester[source2])) { instruction = memory[address]; address++; }
-        else if (greaterCheck & (regester[source1] > regester[source2])) { instruction = memory[address]; address++; }
-        else if (lessCheck & (regester[source1] < regester[source2])) { instruction = memory[address]; address++; }
-        else if (signedCheck & (regester[source1] < MAX_SIGNED)) { instruction = memory[address]; address++; }
+        if      (notZeroCheck && (regester[sourceA] != 0)) { instruction = memory[address]; }
+        else if (equalsCheck && (regester[sourceA] == regester[sourceB])) { instruction = memory[address]; }
+        else if (greaterCheck && (regester[sourceA] > regester[sourceB])) { instruction = memory[address]; }
+        else if (lessCheck && (regester[sourceA] < regester[sourceB])) { instruction = memory[address]; }
     }
+    else if (numonic == LDI) { address++; regester[destination] = memory[address]; }
+    else if (numonic == LDM) { address++; regester[destination] = memory[memory[address]]; }
+    else if (numonic == STM) { address++; memory[memory[address]] = regester[sourceA]; }
+    else if (numonic == LDP) { regester[destination] = memory[regester[sourceA]]; } 
+    else if (numonic == STP) { memory[regester[sourceA]] = regester[destination]; } 
+    else if (numonic == MOV) { regester[destination] = regester[sourceA]; }
+    else if (numonic == ADD) { regester[destination] = regester[sourceA] + regester[sourceB]; }
+    else if (numonic == AND) { regester[destination] = regester[sourceA] & regester[sourceB]; }
+    else if (numonic == IOR) { regester[destination] = regester[sourceA] | regester[sourceB]; }
+    else if (numonic == XOR) { regester[destination] = regester[sourceA] ^ regester[sourceB]; }
+    else if (numonic == NOT) { regester[destination] = ~regester[sourceA]; }
+    else if (numonic == SHL) { regester[destination] = regester[sourceA] << 1; }
+    else if (numonic == SHR) { regester[destination] = regester[sourceA] >> 1; }
+    else if (numonic == INC) { regester[destination] = regester[sourceA]++; }
+    else if (numonic == DEC) { regester[destination] = regester[sourceA]--; }
+    address++;
 }
 
 void Frame() {
@@ -117,7 +118,7 @@ void Frame() {
     for (int i = SCREEN_START; i < RAM_SIZE; i++) {
         for (int j = 0; j < 16; j++) {
             if (memory[i] & bitMasks[j]) {
-                DrawRectangle((i % 256) * 4, (i / 256) * 4, 4, 4, RAYWHITE);
+                DrawRectangle((((i % 16) * 16) + j) * 4, (i / 256) * 4, 4, 4, RAYWHITE);
             }
         }
     }
