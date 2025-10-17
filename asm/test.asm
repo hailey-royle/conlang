@@ -1,2 +1,2 @@
-NOT(a);(d)
-STM(a);(d)
+NOT(r1);(r0)
+STM(r0);(efff)
