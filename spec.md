@@ -5,18 +5,18 @@
 
 | numonic | dst | srca | srcb | code | assmbly | compiled |
 |---|---|---|---|---|---|---|
-|^JMP | - | r | r | 0000NEGLaaaabbbb | JMP(*flags*,a,b);(d) | ?();()  |
+|^JMP | - | r | r | 0000EGL-aaaabbbb | JMP(*flags*,a,b);(d) | ?();()  |
 |^LDI | r | i | - | 0001dddd-------- | LDI(a);(d)           |         |
 |^LDM | r | m | - | 0010dddd-------- | LDM(a);(d)           |         |
 |^STM | m | r | - | 0011----aaaa---- | STM(a);(d)           |         |
 | LDP | r | p | - | 0100ddddaaaa---- | LDP(a);(d)           |         |
 | STP | p | r | - | 0101ddddaaaa---- | STP(a);(d)           |         |
 | MOV | r | r | - | 0110ddddaaaa---- | MOV(a);(d)           |         |
-| ADD | r | r | r | 0111ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d  |
+| NOT | r | r | - | 0111ddddaaaa---- | NOT(a);(d)           | !a;d    |
 | AND | r | r | r | 1000ddddaaaabbbb | AND(a,b);(d)         | &a,b;d  |
 | IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | \|a,b;d |
 | XOR | r | r | r | 1010ddddaaaabbbb | IOR(a,b);(d)         | #a,b;d  |
-| NOT | r | r | - | 1011ddddaaaa---- | NOT(a);(d)           | !a;d    |
+| ADD | r | r | r | 1011ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d  |
 | SHL | r | r | - | 1100ddddaaaa---- | SHL(a);(d)           | {a;d    |
 | SHR | r | r | - | 1101ddddaaaa---- | SHR(a);(d)           | }a;d    |
 | INC | r | r | - | 1110ddddaaaa---- | INC(a);(d)           | +a,1;d  |

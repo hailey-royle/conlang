@@ -10,11 +10,11 @@
 #define LDP 4
 #define STP 5
 #define MOV 6
-#define ADD 7
+#define NOT 7
 #define AND 8
 #define IOR 9
 #define XOR 10
-#define NOT 11
+#define ADD 11
 #define SHL 12
 #define SHR 13
 #define INC 14
@@ -25,9 +25,9 @@
 #define LESS_MASK       0b0000000100000000
 #define RIGHT_FOUR_MASK 0b0000000000001111
 
-#define RAM_SIZE 65536 //2^16
+#define RAM_SIZE 0xffff
 #define REG_SIZE 16
-#define SCREEN_START 61444
+#define SCREEN_START 0xefff
 
 #define CYCLES_FRAME 6250 // 1mh clock 64 fps 2.5 clock per instruction
 #define FPS 64
@@ -84,11 +84,11 @@ void ExecuteInstruction() {
     else if (numonic == LDP) { regester[destination] = memory[regester[sourceA]]; } 
     else if (numonic == STP) { memory[regester[sourceA]] = regester[destination]; } 
     else if (numonic == MOV) { regester[destination] = regester[sourceA]; }
-    else if (numonic == ADD) { regester[destination] = regester[sourceA] + regester[sourceB]; }
+    else if (numonic == NOT) { regester[destination] = ~regester[sourceA]; }
     else if (numonic == AND) { regester[destination] = regester[sourceA] & regester[sourceB]; }
     else if (numonic == IOR) { regester[destination] = regester[sourceA] | regester[sourceB]; }
     else if (numonic == XOR) { regester[destination] = regester[sourceA] ^ regester[sourceB]; }
-    else if (numonic == NOT) { regester[destination] = ~regester[sourceA]; }
+    else if (numonic == ADD) { regester[destination] = regester[sourceA] + regester[sourceB]; }
     else if (numonic == SHL) { regester[destination] = regester[sourceA] << 1; }
     else if (numonic == SHR) { regester[destination] = regester[sourceA] >> 1; }
     else if (numonic == INC) { regester[destination] = regester[sourceA]++; }
@@ -98,27 +98,27 @@ void ExecuteInstruction() {
 
 void Frame() {
     int bitMasks[16] = { 0b1000000000000000,
-                         0b1100000000000000,
-                         0b1010000000000000,
-                         0b1001000000000000,
-                         0b1000100000000000,
-                         0b1000010000000000,
-                         0b1000001000000000,
-                         0b1000000100000000,
-                         0b1000000010000000,
-                         0b1000000001000000,
-                         0b1000000000100000,
-                         0b1000000000010000,
-                         0b1000000000001000,
-                         0b1000000000000100,
-                         0b1000000000000010,
-                         0b1000000000000001 };
+                         0b0100000000000000,
+                         0b0010000000000000,
+                         0b0001000000000000,
+                         0b0000100000000000,
+                         0b0000010000000000,
+                         0b0000001000000000,
+                         0b0000000100000000,
+                         0b0000000010000000,
+                         0b0000000001000000,
+                         0b0000000000100000,
+                         0b0000000000010000,
+                         0b0000000000001000,
+                         0b0000000000000100,
+                         0b0000000000000010,
+                         0b0000000000000001 };
     BeginDrawing();
     ClearBackground(BLACK);
     for (int i = SCREEN_START; i < RAM_SIZE; i++) {
         for (int j = 0; j < 16; j++) {
             if (memory[i] & bitMasks[j]) {
-                DrawRectangle((((i % 16) * 16) + j) * 4, (i / 256) * 4, 4, 4, RAYWHITE);
+                DrawRectangle(((((i - SCREEN_START) % 16) * 16) + j) * 4, ((i - SCREEN_START) / 256) * 4, 4, 4, RAYWHITE);
             }
         }
     }
