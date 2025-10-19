@@ -1,6 +1,14 @@
 #!/bin/bash
 
-if [ "$1" == "asm" ]; then
+if [ "$1" == "pipe" ]; then
+    gcc asm/asm.c -Wall -Wextra -fsanitize=address -g
+    ./a.out $2 
+    rm a.out
+    gcc emu/emu.c -Wall -Wextra -lraylib
+    ./a.out out.bin
+    rm a.out
+    rm out.bin
+elif [ "$1" == "asm" ]; then
     gcc asm/asm.c -Wall -Wextra -fsanitize=address -g
     ./a.out $2 
     rm a.out
