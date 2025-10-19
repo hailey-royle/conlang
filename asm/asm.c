@@ -2,16 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-// lexical toxen stored as { type, tokenA, (optional)tokenB }
-
-#define TYPE_INSTRUCTION 0x00
-#define TYPE_GRAMMER 0x01
-#define TYPE_REGESTER 0x02
-#define TYPE_IMMEDIATE 0x03
-
-#define OPEN_PAREN 0x0a
-#define CLOSED_PAREN 0x0b
-#define CLAUSE_END 0x0f
+#define TYPE_NULL 0
+#define INSTRUCTION 1
+#define REGESTER 2
+#define IMMEDIATE 3
 
 #define STI 0x03
 #define NOT 0x07
@@ -19,18 +13,35 @@
 #define r0 0
 #define r1 1
 
-struct buffer {
-    char* buffer;
+#define INSTRUCTION_OFFSET 12
+#define SOURCEA_OFFSET 8
+#define DESTINATION_OFFSET 0
+
+struct instruction {
+    unsigned short instruction[2];
     size_t length;
 };
-struct buffer lexer;
-struct buffer code;
+
+struct token {
+    unsigned short token;
+    char type;
+};
+
+struct buffer {
+    unsigned short* buffer;
+    size_t length;
+};
 
 struct file {
-    struct buffer data;
+    char* buffer;
     char* name;
+    size_t length;
     unsigned int possition;
 };
+
+struct instruction instruction;
+struct token token;
+struct buffer code;
 struct file file;
 
 void VerifyArgs(int argc, char* argv[]) {
@@ -47,107 +58,128 @@ void LoadFile() {
         printf("file: %s not found\n", file.name);
         exit(1);
     }
-    file.data.length = getdelim(&file.data.buffer, &file.data.length, '\0', fp);
+    file.length = getdelim(&file.buffer, &file.length, '\0', fp);
     fclose(fp);
 }
 
-void BufferAppend(struct buffer* buffer, char* append, int appendLength) {
-    char* new = realloc(buffer->buffer, buffer->length + appendLength);
+void GetToken(char type) {
+    token.type = TYPE_NULL;
+    token.token = 0;
+    while (file.possition < file.length) {
+        if      (file.buffer[file.possition] == ' ') { file.possition++; }
+        else if (file.buffer[file.possition] == '\n') { file.possition++; }
+        else if (file.buffer[file.possition] == 'r') {
+            if (type != REGESTER) {
+                printf("GetToken error unexpected regester\n");
+                exit(1);
+            }
+            token.type = REGESTER;
+            token.token = file.buffer[file.possition + 1] & 0xf;
+            file.possition += 2;
+            return;
+        }
+        else if ((file.buffer[file.possition] >= '0' && file.buffer[file.possition] <= '9') ||
+                (file.buffer[file.possition] >= 'a' && file.buffer[file.possition] <= 'f')) {
+            if (type != IMMEDIATE) {
+                printf("GetToken error unexpected immediate\n");
+                exit(1);
+            }
+            token.type = IMMEDIATE;
+            for (int i = 0; i < 4; i++) {
+                token.token = token.token << 4;
+                if (file.buffer[file.possition + i] >= '0' && file.buffer[file.possition + i] <= '9') {
+                    token.token |= (file.buffer[file.possition + i] & 0xf);
+                }
+                else if (file.buffer[file.possition + i] >= 'a' && file.buffer[file.possition + i] <= 'f') {
+                    token.token |= ((file.buffer[file.possition + i] & 0xf) + 9);
+                }
+                else {
+                    printf("GetImmediateToken error malformed immediate");
+                    exit(1);
+                }
+            }
+            file.possition += 4;
+            return;
+        }
+        else if (file.buffer[file.possition] == 'N') {
+            if (type != INSTRUCTION) {
+                printf("GetToken error unexpected instruction\n");
+                exit(1);
+            }
+            token.type = INSTRUCTION;
+            token.token = NOT;
+            file.possition += 3;
+            return;
+        }
+        else if (file.buffer[file.possition] == 'S') {
+            if (type != INSTRUCTION) {
+                printf("GetToken error unexpected instruction\n");
+                exit(1);
+            }
+            token.type = INSTRUCTION;
+            token.token = STI;
+            file.possition += 3;
+            return;
+        }
+        else {
+            printf("GetToken error unknown character: '%c'\n", file.buffer[file.possition]);
+            exit(1);
+        }
+    }
+}
+
+void GetInstruction() {
+    instruction.instruction[0] = 0;
+    instruction.instruction[1] = 0;
+    instruction.length = 0;
+    GetToken(INSTRUCTION);
+    instruction.instruction[0] |= token.token << INSTRUCTION_OFFSET;
+    if (token.token == NOT) {
+        instruction.length = 1;
+        GetToken(REGESTER);
+        instruction.instruction[0] |= token.token << SOURCEA_OFFSET;
+        GetToken(REGESTER);
+        instruction.instruction[0] |= token.token << DESTINATION_OFFSET;
+    }
+    if (token.token == STI) {
+        instruction.length = 2;
+        GetToken(REGESTER);
+        instruction.instruction[0] |= token.token << DESTINATION_OFFSET;
+        GetToken(IMMEDIATE);
+        instruction.instruction[1] |= token.token;
+    }
+}
+
+void CodeAppend() {
+    unsigned short* new = realloc(code.buffer, (code.length + instruction.length) * sizeof(instruction.instruction[0]));
     if (new == NULL) {
         printf("realloc failed\n");
         exit(1);
     }
-    memcpy(&new[buffer->length], append, appendLength);
-    buffer->buffer = new;
-    buffer->length += appendLength;
-}
-
-void LexGrammer(char token) {
-    char write[2];
-    write[0] = TYPE_GRAMMER;
-    write[1] = token;
-    BufferAppend(&lexer, write, 2);
-    file.possition++;
-}
-
-void LexRegester() {
-    char write[2];
-    write[0] = TYPE_REGESTER;
-    file.possition++;
-    if (file.data.buffer[file.possition] >= '0' && file.data.buffer[file.possition] <= '9') {
-        write[1] = file.data.buffer[file.possition] & 0x0f;
-    } else if (file.data.buffer[file.possition] >= 'a' && file.data.buffer[file.possition] <= 'f') {
-        write[1] = (file.data.buffer[file.possition] & 0x0f) + 9;
-    } else {
-        printf("LexRegester error, char: %c", file.data.buffer[file.possition]);
-        exit(1);
+    code.buffer = new;
+    for (size_t i = 0; i < instruction.length; i++) {
+        code.buffer[code.length + i] = instruction.instruction[i];
     }
-    BufferAppend(&lexer, write, 2);
-    file.possition++;
+    code.length += instruction.length;
 }
 
-void LexNumber() {
-    char write[5];
-    write[0] = TYPE_IMMEDIATE;
-    for (int i = 1; i < 5; i++) {
-        if (file.data.buffer[file.possition] >= '0' && file.data.buffer[file.possition] <= '9') {
-            write[i] = file.data.buffer[file.possition] & 0x0f;
-        } else if (file.data.buffer[file.possition] >= 'a' && file.data.buffer[file.possition] <= 'f') {
-            write[i] = (file.data.buffer[file.possition] & 0x0f) + 9;
-        } else {
-            printf("LexNumber error, char: %c", file.data.buffer[file.possition]);
-            exit(1);
-        }
-        file.possition++;
-    }
-    BufferAppend(&lexer, write, 5);
-    file.possition++;
-}
-
-void LexInstruction() {
-    char write[1];
-    if (file.data.buffer[file.possition] == 'S') {
-        write[0] = STI;
-    } else if (file.data.buffer[file.possition] == 'N') {
-        write[0] = NOT;
-    } else {
-        printf("LexNumber error, char: %c", file.data.buffer[file.possition]);
-        exit(1);
-    }
-    BufferAppend(&lexer, write, 5);
-    file.possition += 3;
-}
-
-void Lexer() {
-    while (file.possition < file.data.length) {
-        if      (file.data.buffer[file.possition] == '(') { LexGrammer(OPEN_PAREN); }
-        else if (file.data.buffer[file.possition] == ')') { LexGrammer(CLOSED_PAREN); }
-        else if (file.data.buffer[file.possition] == ';') { LexGrammer(CLAUSE_END); }
-        else if (file.data.buffer[file.possition] == 'r') { LexRegester(); }
-        else if ((file.data.buffer[file.possition] >= '0' && file.data.buffer[file.possition] <= '9') ||
-                (file.data.buffer[file.possition] >= 'a' && file.data.buffer[file.possition] <= 'f')) { LexNumber(); }
-        else if (file.data.buffer[file.possition] >= 'A' && file.data.buffer[file.possition] <= 'Z') { LexInstruction(); }
-        else if (file.data.buffer[file.possition] == ' ' ) { file.possition++; }
-        else if (file.data.buffer[file.possition] == '\n' ) { file.possition++; }
-        else {
-            printf("LexNumber error, char: %c", file.data.buffer[file.possition]);
-            exit(1);
-        }
+void Assemble() {
+    while (file.possition < file.length) {
+        GetInstruction();
+        CodeAppend();
     }
 }
 
 void StoreFile() {
     FILE* fp = fopen("out.bin", "wb");
-    fwrite(code.buffer, code.length, 1, fp);
+    fwrite(code.buffer, code.length * sizeof(code.buffer[0]), 1, fp);
     fclose(fp);
 }
 
 int main(int argc, char* argv[]) {
     VerifyArgs(argc, argv);
     LoadFile();
-    Lexer();
-    code.buffer = lexer.buffer;
-    code.length = lexer.length;
+    Assemble();
     StoreFile();
     return 0;
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$1" == "asm" ]; then
-    gcc asm/asm.c -Wall -Wextra
+    gcc asm/asm.c -Wall -Wextra -fsanitize=address -g
     ./a.out $2 
     rm a.out
 elif [ "$1" == "emu" ]; then
