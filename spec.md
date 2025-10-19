@@ -5,22 +5,22 @@
 
 | numonic | dst | srca | srcb | code | assmbly | compiled |
 |---|---|---|---|---|---|---|
-|^JMP | - | r | r | 0000EGL-aaaabbbb | JMP(*flags*,a,b);(d) | ?();()  |
-|^LDI | r | i | - | 0001dddd-------- | LDI(a);(d)           |         |
-|^LDM | r | m | - | 0010dddd-------- | LDM(a);(d)           |         |
-|^STM | m | r | - | 0011----aaaa---- | STM(a);(d)           |         |
-| LDP | r | p | - | 0100ddddaaaa---- | LDP(a);(d)           |         |
-| STP | p | r | - | 0101ddddaaaa---- | STP(a);(d)           |         |
-| MOV | r | r | - | 0110ddddaaaa---- | MOV(a);(d)           |         |
-| NOT | r | r | - | 0111ddddaaaa---- | NOT(a);(d)           | !a;d    |
-| AND | r | r | r | 1000ddddaaaabbbb | AND(a,b);(d)         | &a,b;d  |
-| IOR | r | r | r | 1001ddddaaaabbbb | IOR(a,b);(d)         | \|a,b;d |
-| XOR | r | r | r | 1010ddddaaaabbbb | IOR(a,b);(d)         | #a,b;d  |
-| ADD | r | r | r | 1011ddddaaaabbbb | ADD(a,b);(d)         | +a,b;d  |
-| SHL | r | r | - | 1100ddddaaaa---- | SHL(a);(d)           | {a;d    |
-| SHR | r | r | - | 1101ddddaaaa---- | SHR(a);(d)           | }a;d    |
-| INC | r | r | - | 1110ddddaaaa---- | INC(a);(d)           | +a,1;d  |
-| DEC | r | r | - | 1111ddddaaaa---- | DEC(a);(d)           | +a,-1;d |
+|^JMP | - | r | r | 0000aaaabbbbELG- | JMP f a b d | ?();()  |
+|^LDI | r | i | - | 0001--------dddd | LDI a d     |         |
+|^LDM | r | m | - | 0010--------dddd | LDM a d     |         |
+|^STM | m | r | - | 0011aaaa-------- | STM a d     |         |
+| LDP | r | p | - | 0100aaaa----dddd | LDP a d     |         |
+| STP | p | r | - | 0101aaaa----dddd | STP a d     |         |
+| MOV | r | r | - | 0110aaaa----dddd | MOV a d     |         |
+| NOT | r | r | - | 0111aaaa----dddd | NOT a d     | !a;d    |
+| AND | r | r | r | 1000aaaabbbbdddd | AND a b d   | &a,b;d  |
+| IOR | r | r | r | 1001aaaabbbbdddd | IOR a b d   | \|a,b;d |
+| XOR | r | r | r | 1010aaaabbbbdddd | IOR a b d   | #a,b;d  |
+| ADD | r | r | r | 1011aaaabbbbdddd | ADD a b d   | +a,b;d  |
+| SHL | r | r | - | 1100aaaa----dddd | SHL a d     | {a;d    |
+| SHR | r | r | - | 1101aaaa----dddd | SHR a d     | }a;d    |
+| INC | r | r | - | 1110aaaa----dddd | INC a d     | +a,1;d  |
+| DEC | r | r | - | 1111aaaa----dddd | DEC a d     | +a,-1;d |
 
 ^instruction also includes location immeditly after in memory for addressing
 
