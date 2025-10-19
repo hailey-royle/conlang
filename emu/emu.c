@@ -19,11 +19,15 @@
 #define SHR 13
 #define INC 14
 #define DEC 15
-#define NOT_ZERO_MASK   0b0000100000000000
-#define EQUALS_MASK     0b0000010000000000
-#define GREATER_MASK    0b0000001000000000
-#define LESS_MASK       0b0000000100000000
-#define RIGHT_FOUR_MASK 0b0000000000001111
+#define EQUALS_MASK     0b0000000000001000
+#define LESS_MASK       0b0000000000000100
+#define GREATER_MASK    0b0000000000000010
+#define RIGHT_FOUR_MASK 0x000f
+
+#define NUMONIC_OFFSET 12
+#define SOURCEA_OFFSET 8
+#define SOURCEB_OFFSET 4
+#define DESTENATION_OFFSET 0
 
 #define RAM_SIZE 0xffff
 #define REG_SIZE 16
@@ -62,19 +66,16 @@ void ExecuteInstruction() {
         return;
     }
     instruction = memory[address];
-    unsigned short numonic = instruction >> 12;
-    unsigned short destination = (instruction >> 8) & RIGHT_FOUR_MASK;
-    unsigned short sourceA = (instruction >> 4) & RIGHT_FOUR_MASK;
-    unsigned short sourceB = instruction & RIGHT_FOUR_MASK;
-
+    unsigned short numonic = (instruction >> NUMONIC_OFFSET) & RIGHT_FOUR_MASK;
+    unsigned short sourceA = (instruction >> SOURCEA_OFFSET) & RIGHT_FOUR_MASK;
+    unsigned short sourceB = (instruction >> SOURCEB_OFFSET) & RIGHT_FOUR_MASK;
+    unsigned short destination = (instruction >> DESTENATION_OFFSET) & RIGHT_FOUR_MASK;
     if (numonic == JMP) { 
         address++;
-        bool notZeroCheck = instruction & NOT_ZERO_MASK;
         bool equalsCheck = instruction & EQUALS_MASK;
         bool greaterCheck = instruction & GREATER_MASK;
         bool lessCheck = instruction & LESS_MASK;
-        if      (notZeroCheck && (regester[sourceA] != 0)) { instruction = memory[address]; }
-        else if (equalsCheck && (regester[sourceA] == regester[sourceB])) { instruction = memory[address]; }
+        if      (equalsCheck && (regester[sourceA] == regester[sourceB])) { instruction = memory[address]; }
         else if (greaterCheck && (regester[sourceA] > regester[sourceB])) { instruction = memory[address]; }
         else if (lessCheck && (regester[sourceA] < regester[sourceB])) { instruction = memory[address]; }
     }
